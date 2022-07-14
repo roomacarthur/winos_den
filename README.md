@@ -54,3 +54,20 @@ Working closely with Winos Den We aim to create a sleek and interactive platform
 
 
 ## Scope
+
+Provided that the site is a success and the sales figures keep the business owners happy, the site will be able to flow through multiple iterations to keep the site interesting and moving forward with the times. With the first iteration of the Winos Den website we are aiming to launch quick so we will strongly focus on getting an MVP(minimum viable product) out as soon as possible. Even though we are aiming to launch with an MVP we know that any flaws/bugs could have a negative impact on potential customers so thorough testing will be carried out. 
+
+### MVP release: 
+
++ User account creation and management 
++ Payment gateway - Stripe
++ Fully responsive
++ Crud functionality for users to leave reviews on products. 
++ Admin product management
++ User posted content moderation for admin.
+
+### Future Releases/Updates:
+
++ Stock management for Admin.
++ More in depth user profile customisation e.g. profile picture, rating scores, 
++ Loyalty scheme for returning customer. 
