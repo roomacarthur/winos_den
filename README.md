@@ -107,3 +107,58 @@ There Will be a news letter sign up promotion which will be located in different
 
 
 ## Skeleton
+
+### Wireframes
+
+As an unwritten rule with all of my design work I opt for a mobile first approach, All of our initial planning with the management at winos den was based on designing the site in mobile first as we both believe that the majority of the consumer base will be mobile/tablet users. From this it is quite simple to extend the site to look great in desktop view also.
+
+
+# *Add Wireframes Here*
+
+
+
+### Database
+
+
+
+# Deployment
+
+This project will be deployed to [Heroku](https://heroku.com) using the following outlined steps:
+
+## Setting up Heroku Deployment
+
+1. Navigate to [Heroku](https://heroku.com).
+2. Create an account or log in.
+   - If creating an account select **Python** as the **_Primary development language_**
+3. Click the **New** button found top right of page and select **Create New App** from the dropdown menu.
+4. Provide an app name **_this has to be unique_**
+5. Select your region.
+6. Click **Create App**
+7. Navigate to the **Deploy tab**
+8. Scroll down the page until you come across **Deployment Method**
+9. Click **GitHub**
+   - Connect your GitHub account if this is your first time.
+10. Search for your projects GitHub Repository and click **connect**
+
+## Automatic Deployment
+
+When it comes to deployment there are two options **Automatic Deployment** or **Manual Deployment**.
+
+For this project I have opted for **Automatic Deployment** as this allows for Heroku to re run the build and update my deployment every time I push code to my GitHub Repository.
+
+To activate this:
+
+1. Navigate to the **Deploy Tab**
+2. Scroll down until you come across **Automatic Deployment**
+3. Ensure that the correct branch is selected.
+   - In Most cases this will be either main or master
+   - In my case it will be main
+4. Click **Enable Automatic Deploys**
+
+The project is now deployed and will automatically re-run the build and deploy every time I push code to GitHub.
+
+## Environment Variables
+
+Within my local files my Environmental Variables are set within a env.py file, the details of this file as confidential and are added to the _.gitignore_ file so that they aren't publicly available. But because these files are not pushed to GitHub we need to enable the same Variables within Heroku for the application to run successfully.
+
+# Credits
