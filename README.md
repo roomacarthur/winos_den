@@ -2,7 +2,7 @@
 
 To easily navigate please click the the small headings selector to the top left of this document. 
 
-![navigation hint](documentation\images\readme-navigation.png)
+![navigation hint](documentation\images\readme_navigation.png)
 
 
 
