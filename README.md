@@ -143,6 +143,50 @@ For Winos den we will be keeping inline with their current house style using the
 - skobeloff: #046865ff;
 
 ![site colours](https://github.com/roomacarthur/winos-den/blob/main/documentation/images/colours.png)
+
+# Business Model
+
+With the wine industry being so large our audience isn't just the general public but also the hospitality and catering industry. Due to this our business model crosses the border of both B2B(business to business) and B2C (business to customer). We will sell directly to both. 
+
+## Marketing
+
+With winos den already having a strong market share in its local catchment area due to a long trading history and word of moth, the move online will consist of two marketing avenues, social media and newsletters. Social media will drive the traffic to the site and the newsletter is something we can utilise to keep users coming back. 
+
+Social media has always been a very strong avenue for businesses to grow and with this we will focus mainly on Facebook and Instagram with the potential to progress into other social networks like Pinterest where we can target a another audience and also linkedin to target those who WFH and spend a lot of time on the site for work purposes. 
+
+### Facebook
+
+Here is an example of the facebook page we will be using.
+
+### Instagram
+
+Here is an example of an instagram account that once set up we will strive to be like. 
+
+
+### Newsletter
+
+Our newsletter will appear in a variety of places across the site and will always have a perma location in the site footer. 
+
+Prompting people to sign up for the newsletter when they initially land on the site will be out avenue for promoting the newsletter. 
+
+Once a user is signed up they will receive weekly wine updates filled with tasting notes, whats hot and weekly offers that WD are offering. 
+
+# SEO
+SEO = *search engine optimization* 
+
+Providing that all sites compete for that golden spot on search engines making the site unique and following all the golden rules of SEO will help to promote the site and keep its ranking healthy. 
+
+Some key points that will be focused on are as follows: 
+
+- Linking site with google places
+- Semantic HTML
+- use of meta tags
+- building back links via news letters, social media posts.
+- correct usage of robots.txt file.
+- up to date sitemap.xml
+
+Search engine crawlers rank pages on many factors and keeping everything we do as professional and complete as possible will keep the site in good shape. Maintaining the site and fixing any broken links that may appear over time will also provide us with a better ranking. Page ranking doesn't happen over night and this will take some time but with the correct growth, traffic and management the site will slowly appear closer to that top spot. 
+
 # Deployment
 
 This project will be deployed to [Heroku](https://heroku.com) using the following outlined steps:
