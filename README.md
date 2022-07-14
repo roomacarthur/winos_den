@@ -35,4 +35,22 @@ Working closely with Winos Den We aim to create a sleek and interactive platform
 
 **Project Goal:** Provide a platform where users can easily navigate and purchase the products they require, Make this process as easy and effortless as possible to prompt users to want to return.
 
+**Site Users Needs**
+
++ To be able to view the site on any device.
++ To be able to navigate the site with ease.
++ To easily register an account.
++ To be able to easily add items to a cart and checkout
++ To be able to log in and out.
++ To be able to update personal info.
+
+**Project Objectives:**
+
++ Create a fully responsive web app. 
++ Allow for safe payments via Stripe
++ Create a stylish and easy to navigate web app.
++ Create a strong marketing strategy for instant traffic.
++ Streamline the buying process to keep customers captive. 
+
+
 ## Scope
