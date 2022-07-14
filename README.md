@@ -159,6 +159,6 @@ The project is now deployed and will automatically re-run the build and deploy e
 
 ## Environment Variables
 
-Within my local files my Environmental Variables are set within a env.py file, the details of this file as confidential and are added to the _.gitignore_ file so that they aren't publicly available. But because these files are not pushed to GitHub we need to enable the same Variables within Heroku for the application to run successfully.
+Within my local files my Environmental Variables are set within a env.py file, the details of this file are confidential and are added to the _.gitignore_ file so that they aren't publicly available. But because these files are not pushed to GitHub we need to enable the same Variables within Heroku for the application to run successfully.
 
 # Credits
