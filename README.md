@@ -71,3 +71,39 @@ Provided that the site is a success and the sales figures keep the business owne
 + Stock management for Admin.
 + More in depth user profile customisation e.g. profile picture, rating scores, 
 + Loyalty scheme for returning customer. 
+
+## Structure
+
+As the platform will be user driven, the structure is based on allowing users to be drawn to products and offers. Users will be prompted with messages when a hard action has been made e.g. "successfully logged in", "Review Posted Successfully", "You have logged out".
+
+There Will be a news letter sign up promotion which will be located in different places from time to time but it will always have a constant place in the footer. 
+
++ Header
+
+    + Winos Den Logo
+    + Desktop and mobile navigation
+    + User Access
+    + 
+
++ Banner
+
+    + Promotional offers
+
++ Messages
+
+    + Display success messages for users
+    + Messages based on users actions
+
++ Main content
+
+    + provided in a block content this will be the Majority of site content.
+
++ Footer
+
+    + Winos Den Location
+    + Business Links (T&C, Privacy Policy etc.)
+    + Links to socials
+    + News Letter Sign up.
+
+
+## Skeleton
