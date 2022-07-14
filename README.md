@@ -128,8 +128,21 @@ As an unwritten rule with all of my design work I opt for a mobile first approac
 
 ### Database
 
+## Surface
 
+### Typography
 
+### Colours
+
+For Winos den we will be keeping inline with their current house style using the following colours:
+
+- raisin-black: #272727ff;
+- old-gold: #b3a400ff;
+- ivory: #f1f7e6ff;
+- viridian-green: #21a0a0ff;
+- skobeloff: #046865ff;
+
+![site colours]()
 # Deployment
 
 This project will be deployed to [Heroku](https://heroku.com) using the following outlined steps:
