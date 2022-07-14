@@ -1,3 +1,12 @@
+# Winos Den
+
+To easily navigate please click the the small headings selector to the top left of this document. 
+
+![navigation hint](documentation\images\readme-navigation.png)
+
+
+
+
 # Overview 
 Winos Den has a strong standing reputation with it's customers and with this has managed to become the market leader for fine wines within it's local area. With the turbulent times over the past couple years the management have taken the decision to increase their presence online, opting to grow the business via the forms of E-commerce rather than to open a second outlet. 
 
