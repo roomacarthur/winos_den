@@ -142,7 +142,7 @@ For Winos den we will be keeping inline with their current house style using the
 - viridian-green: #21a0a0ff;
 - skobeloff: #046865ff;
 
-![site colours]()
+![site colours](https://github.com/roomacarthur/winos-den/blob/main/documentation/images/colours.png)
 # Deployment
 
 This project will be deployed to [Heroku](https://heroku.com) using the following outlined steps:
