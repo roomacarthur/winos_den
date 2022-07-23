@@ -57,42 +57,15 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-user"></i>
-            </a>
-            <div class="dropdown-menu">
-                <form class="px-4 py-3">
-                  <div class="form-group">
-                    <label for="exampleDropdownFormEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleDropdownFormPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                      <label class="form-check-label" for="dropdownCheck">
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">New around here? Sign up</a>
-                <a class="dropdown-item" href="#">Forgot password?</a>
-              </div>
           </li>
         </div>
       </nav>
-
+      {% block content_header %}
+      {% endblock %}
       {% block content %}
       {% endblock %}
-
-
-    -->
+      <!--Javascript to load at the end of body. -->
+      {% block postload_js %}
+      {% endblock %}
   </body>
 </html>
