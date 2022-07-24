@@ -6,4 +6,8 @@
 {% block content %}
 <h2>All Products!</h2>
 
+{% for product in product_list %}
+
+{{ product.name }}
+{% endfor %}
 {% endblock %}

@@ -1,0 +1,16 @@
+/*--------------------- colour variables */
+:root {
+    --raisin-black: #272727ff;
+    --old-gold: #b3a400ff;
+    --ivory: #f1f7e6ff;
+    --viridian-green: #21a0a0ff;
+    --skobeloff: #046865ff;
+}
+
+body{
+    background: var(--ivory);
+}
+
+.text-green{
+    color: var(--viridian-green);
+}
