@@ -105,6 +105,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                # MEDIA_URL requirement. 
+                'django.template.context_processors.media', 
                 'django.template.context_processors.request', # allauth requirement.
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -172,7 +174,8 @@ STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static')
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIAFILES_DIRS =[os.path.join(BASE_DIR, 'media')]
+MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
 
 
 if 'USE_AWS' in os.environ:
