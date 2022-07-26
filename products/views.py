@@ -4,11 +4,6 @@ from django.shortcuts import get_object_or_404, render
 
 from .models import Product, Category
 
-# Create your views here.
-def index(request):
-    """A view to return the index page."""
-    return render(request, 'products/index.html')
-
 # class AllProducts(generic.ListView):
 #     """
 #     Displays all Products in relation to the model: Product
@@ -21,10 +16,20 @@ def index(request):
 
 class AllProducts(generic.ListView):
     """
-    
+    Displays all items relating to the model: Product.
+    Renders on the template product_list.html
     """
     model = Product
     template_name = 'products/product_list.html'
+
+class UnderTen(generic.ListView):
+    """
+    Displays all items relating to the model: Product.
+    Renders on the template product_list.html
+    """
+    model = Product
+    template_name = 'products/under_10.html'
+
 
 
 class ProductDetails(generic.DetailView):
