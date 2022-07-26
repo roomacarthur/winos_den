@@ -38,7 +38,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><h1 class="text-green">Winos Den</h1></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><h1 class="text-light">Winos Den</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,40 +46,51 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                   Our Wines
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">All</a>
-                  <a class="dropdown-item" href="#">White Wines</a>
+                  <a class="dropdown-item" href="{% url 'products' %}">All</a>
+                  <a class="dropdown-item" href="{% url 'products' %}?category=white">White Wines</a>
                   <a class="dropdown-item" href="#">Red Wines</a>
                   <a class="dropdown-item" href="#">Rosé Wines</a>
                   <a class="dropdown-item" href="#">Sparkling Wines</a>
                 </div>
               </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Under £10 <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-light" href="{% url 'under-10' %}">Under £10 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link text-light" href="#">Contact Us</a>
             </li>
-            {% if user.is_superuser %}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                  Management
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Add New Product</a>
-                  <a class="dropdown-item" href="#">Update Customer</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Admin Panel</a>
-                </div>
-              </li>
-              {% endif %}
+              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+              </a>
+              <div class="dropdown-menu">
+                {% if user.is_superuser %}
+                <a class="dropdown-item" href="#">Add New Product</a>
+                <a class="dropdown-item" href="#">Update Customer</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a class="dropdown-item" href="#">Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a>
+                <a class="dropdown-item" href="{% url 'account_login' %}">Log In</a>
+                {% endif %}
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#"><i class="fa-solid fa-wine-glass"><span class="items-qty">£0</span></i></a>
+            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-bold btn-outline-warning my-2 my-sm-0 text-light" type="submit">Search</button>
           </form>
         </div>
       </nav>
@@ -89,11 +100,11 @@
       {% block content %}
       {% endblock %}
       </main>
+      <footer class="footer bg-dark text-light">
+      <h1>footer</h1>
+      </footer>
       <!--Javascript to load at the end of body. -->
       {% block postload_js %}
       {% endblock %}
-  
-  
-  
     </body>
 </html>
