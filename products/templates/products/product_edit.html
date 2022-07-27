@@ -1,0 +1,19 @@
+{% extends "../base.html" %}
+
+{% block content_header %}
+<h1>product.name</h1>
+{% endblock %}
+{% block content %}
+<h2>Edit Product</h2>
+<div class="form-group">
+    {% if user.is_authenticated %}
+        <h1>Create New Product</h1>
+        <form class="new-post-form" method="post">
+            {% csrf_token %}
+            {{ form.media}}
+            {{ form.as_p }}
+            <button class="btn btn-info"type="submit">Submit New</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
