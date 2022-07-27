@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'products',
     #other
     'storages',
+    'crispy_forms',
 ]
 
 AUTHENTICATION_BACKENDS = [
