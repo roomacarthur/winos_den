@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.views import generic, View
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.shortcuts import get_object_or_404, render
-
+from django.contrib.auth.decorators import user_passes_test
 from .models import Product, Category
+from .forms import ProductForm
 
 # class AllProducts(generic.ListView):
 #     """
@@ -30,8 +32,6 @@ class UnderTen(generic.ListView):
     model = Product
     template_name = 'products/under_10.html'
 
-
-
 class ProductDetails(generic.DetailView):
     """
     
@@ -39,3 +39,15 @@ class ProductDetails(generic.DetailView):
     model = Product
     pk_url_kwarg = 'id'
     template_name = 'products/product_details.html'
+
+
+
+# @user_passes_test(lambda u: u.is_superuser)
+class AddNewProduct(CreateView):
+    """
+    
+    """
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/product_new.html'
+    success_url = '/products/'
