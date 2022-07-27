@@ -41,14 +41,6 @@ body{
     font-weight:400;
 }
 
-footer{
-    position: absolute;
-    margin-top: auto;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    padding: 10px;
-}
 
 .items-qty{
     padding: 2px;

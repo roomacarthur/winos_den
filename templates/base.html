@@ -94,14 +94,17 @@
           </form>
         </div>
       </nav>
-      <main id="content">
+      <main id="content mb-10">
       {% block content_header %}
       {% endblock %}
       {% block content %}
       {% endblock %}
       </main>
-      <footer class="bg-dark text-light">
-      <h1>footer</h1>
+      <!--Floating message for newsletter?-->
+      <footer class="footer navbar-fixed-bottom bg-dark text-light p-2">
+        <div class="container">
+          <span class="">newsletter sign up</span>
+        </div>
       </footer>
       <!--Javascript to load at the end of body. -->
       {% block postload_js %}
