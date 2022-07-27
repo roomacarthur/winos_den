@@ -95,6 +95,11 @@
         </div>
       </nav>
       <main id="content mb-10">
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-success text-center">{{message}}</div>
+          {% endfor %}
+        {% endif %}
       {% block content_header %}
       {% endblock %}
       {% block content %}
