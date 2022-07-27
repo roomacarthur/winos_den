@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .models import Product, Category
 from .forms import ProductForm
 
@@ -42,11 +42,18 @@ class ProductDetails(generic.DetailView):
 
 
 
-# @user_passes_test(lambda u: u.is_superuser)
-class AddNewProduct(CreateView):
+
+class AddNewProduct(CreateView, UserPassesTestMixin, LoginRequiredMixin):
     """
-    
+    A view to provide a form for user to create new product.
+    Check to ensure user is superuser. 
+    Build form from the Product model.
+    Render on product_new.html
+    upon success return to products list.
     """
+    def test_func(self):
+        return self.request.user.is_superuser
+
     model = Product
     form_class = ProductForm
     template_name = 'products/product_new.html'
