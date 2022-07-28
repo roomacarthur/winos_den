@@ -8,7 +8,7 @@ Delete: {{ product.name }}
     <form method="POST" action=".">
         {% csrf_token %}
         <h1>Are you sure you want to delete: {{ product.name }}</h1>
-        <p><input class="btn yes" type="submit" value="Yes" /> <a class="btn no" href="#">No</a></p>
+        <p><input class="btn btn-info" type="submit" value="Yes" /> <a class="btn btn-danger" href="#">No</a></p>
     </form>
 </div>
 {%endblock%}
