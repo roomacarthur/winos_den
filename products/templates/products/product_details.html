@@ -4,14 +4,13 @@
 {{ product.name }}
 {% endblock%}
 {% block content_header %}
-<h1>Product</h1>
+<h1>{{ product.name }}</h1>
 {% endblock %}
 {% block content %}
-<div class="overlay"></div>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-            <div class="image-container my-5">
+        <div class="col col-md-12 image-container">
+            <div class="my-5 col-xl-4">
                 {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank">
                         <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -23,22 +22,56 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="product-details-container mb-5 mt-md-5">
-                <h2 class="mb-0">{{ product.name }}</h2>
-                {% if request.user.is_superuser %}
-                    <div class="text-left">
-                        <a class="text-green" href="{% url 'edit_product' product.pk %}"><i class="fa-solid fa-pen-to-square"></i></a> -|- 
-                        <a class="text-danger" href="{% url 'delete_product' product.pk %}"><i class="fa-solid fa-trash-can"></i></a>
+        <div class="col col-md-12 col-xl-6">
+        <ul class="list-group mb-3 my-5">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <p class="my-0">{{ product.description}}</p>
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Price (per/item)</span>
+                <strong>£{{ product.price }}</strong>
+            </li>
+            <div class="card p-1 justify-content-center my-2">
+            <form class="form" action="{% url 'add_to_cart' product.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-12">
+                        <p class="mt-3"><strong>Quantity:</strong></p>
+                        <div class="form-group w-50 mx-auto">
+                            <div class="input-group input-group-{{ product.id }}">
+                                <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
+                                    name="quantity" value="1" min="1" max="99"
+                                    data-item_id="{{ product.id }}">
+                            </div>
+                        </div>
                     </div>
-                {% endif %}
-                <p class="lead mb-0 text-left font-weight-bold mt-3">£{{ product.price }}</p>
-
-                <p class="mt-3">{{ product.description }}</p>
+                    <div class="col-12 mb-2">
+                        <a href="{% url 'products' %}" class="btn btn-info rounded-2 mt-5">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span>Keep Shopping</span>
+                        </a>
+                        <input type="submit" class="btn btn-info rounded-2  mt-5" value="Add to Bag">
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </div>
+            </form>
+        </div>
+        </ul>
+        {% if request.user.is_superuser %}
+        <div class="card p-2 justicy-content-center">
+            <div class="text-left">
+                <a class="text-green float-left" href="{% url 'edit_product' product.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                <a class="text-danger float-right" href="{% url 'delete_product' product.pk %}">Delete <i class="fa-solid fa-trash-can"></i></a>
             </div>
         </div>
+        {% endif %}
+        </div>
+      </div>
     </div>
 </div>
-
-
 {% endblock %}
+
