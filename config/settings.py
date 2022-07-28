@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     #other
     'storages',
     'crispy_forms',
+    'django_countries',
 ]
 
 AUTHENTICATION_BACKENDS = [
