@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'home',
     'profiles',
     'products',
+    'cart',
     #other
     'storages',
     'crispy_forms',
@@ -111,6 +112,7 @@ TEMPLATES = [
                 'django.template.context_processors.request', # allauth requirement.
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents',
             ],
         },
     },
