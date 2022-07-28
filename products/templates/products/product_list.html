@@ -8,37 +8,48 @@
         </div>
     </div>
     <div class="row">
-        <div class="product-container col-10 offset-1">
+        <div class="product-container col-12">
             <div class="row mt-1"></div>
-            <div class="row">
+            <div class="row justify-content-center">
                 {% for product in object_list %}
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3 mt-3">
-                        <div class="card h-100 border-0 ">
-                            {% if product.image %}
-                            <a href="{% url 'product_detail' product.pk %}">
-                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                            </a>
-                            {% else %}
-                            <a href="{% url 'product_detail' product.pk %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}, Image not available.">
-                            </a>
-                            {% endif %}
-                            <div class="card-body pb-0">
-                                <p class="mb-0">{{ product.name }}</p>
-                            </div>
-                            <div class="card-footer bg-white pt-0 border-0 text-left">
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="card mt-5 col-sm-6 col-md-6 col-lg-4 col-xl-3 mx-1">
+                    {% if product.image %}
+                    <a href="{% url 'product_detail' product.pk %}">
+                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'product_detail' product.pk %}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}, Image not available.">
+                    </a>
+                    {% endif %}
+                    <div class="card-body text-center mx-auto">
+                        <div class='cvp'>
+                            <h5 class="card-title font-weight-bold">{{ product.name }}</h5>
+                            <p class="card-text">£{{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.pk %}" class="btn bg-gold m-1 px-auto text-dark">View Details</a><br />
+                            <a href="#" class="btn btn-info m-1 btn-info text-light px-auto">ADD TO CART</a>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
             </div>
-            <div class="row mt-3 mb-3"></div>
+            <div class="row mt-3 mb-3">
+                <hr class="w-50 mb-1">
+            </div>
         </div>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
 </div>
 {% endblock %}

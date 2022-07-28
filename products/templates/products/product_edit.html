@@ -8,7 +8,7 @@
 <div class="form-group">
     {% if user.is_authenticated %}
         <h1>Create New Product</h1>
-        <form class="new-post-form" method="post">
+        <form class="new-post-form" method="post" enctype='multipart/form-data'>
             {% csrf_token %}
             {{ form.media}}
             {{ form.as_p }}

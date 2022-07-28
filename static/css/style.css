@@ -26,10 +26,18 @@ body{
 .text-light{
     color: var(--ivory)!important;
 }
-
+.text-dark{
+    color: var(--raisin-black)!important;
+}
 
 .bg-dark{
     background-color: var(--viridian-green)!important;
+}
+.bg-gold{
+    background-color: var(--old-gold);
+}
+.btn-info{
+    background-color:  var(--viridian-green)!important;
 }
 
 .btn-outline-warning{
@@ -41,8 +49,6 @@ body{
     color: var(--raisin-black)!important;
     font-weight:400;
 }
-
-
 .items-qty{
     padding: 2px;
     font-size: .75em;
@@ -54,4 +60,10 @@ body{
 
 .navbar-toggler{
     border-color: var(--ivory)!important;
+}
+/* Product List view, item card styling */
+.card {
+    border: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+    border-radius: 5px;
 }
