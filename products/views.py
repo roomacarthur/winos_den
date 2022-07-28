@@ -84,7 +84,7 @@ class EditProduct(UpdateView, UserPassesTestMixin, LoginRequiredMixin):
         Prompt user with success message that includes product name.
         """
         name = self.object.name
-        messages.success(self.request, f'{name}, was updated.')
+        messages.success(self.request, f'{name}, was updated successfully.')
         pk = self.kwargs['pk']
         return reverse('product_detail',kwargs={'pk':pk})
 
@@ -108,7 +108,6 @@ class DeleteProduct(DeleteView, UserPassesTestMixin, LoginRequiredMixin):
     def delete(self, request, *args, **kwargs):
         """
         Success message to be displayed after deletion of post.
-        Help from multiple stackoverflow posts.
         """
         messages.success(self.request, self.success_message)
         return super(DeleteProduct, self).delete(request, *args, **kwargs)
