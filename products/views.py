@@ -8,16 +8,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .models import Product, Category
 from .forms import ProductForm
 from django.contrib import messages
+# from django.db.models import Q
 
-# class AllProducts(generic.ListView):
-#     """
-#     Displays all Products in relation to the model: Product
-#     Orders products by Price, Ascending.
-#     Renders on products_list.html
-#     """
-#     model = Product
-#     queryset: Product.objects.order_by('-price')
-#     template_name = 'product_list.html'
 
 class AllProducts(generic.ListView):
     """
@@ -26,6 +18,20 @@ class AllProducts(generic.ListView):
     """
     model = Product
     template_name = 'products/product_list.html'
+    paginate_by = 9
+    
+    # search parameters 
+    def get_queryset(self):
+    # if 'q' in self.request.GET:
+        query = self.request.GET.get('q')
+        if query:
+            # if value searched matches name or description return items.
+            object_list = self.model.objects.filter(name__icontains=query)|self.model.objects.filter(description__icontains=query)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
+        
+
 
 
 class UnderTen(generic.ListView):
@@ -74,13 +80,14 @@ class EditProduct(UpdateView, UserPassesTestMixin, LoginRequiredMixin):
 
     def get_success_url(self):
         """
-        Upon succesfull update return user to original products page. 
+        Upon successful update return user to original products page. 
         Prompt user with success message that includes product name.
         """
         name = self.object.name
         messages.success(self.request, f'{name}, was updated.')
         pk = self.kwargs['pk']
         return reverse('product_detail',kwargs={'pk':pk})
+
 
 class DeleteProduct(DeleteView, UserPassesTestMixin, LoginRequiredMixin):
 
