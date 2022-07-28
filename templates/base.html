@@ -85,7 +85,17 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="#"><i class="fa-solid fa-wine-glass"><span class="items-qty">£0</span></i></a>
+              <a class="nav-link text-light" href="{% url 'cart' %}">
+                <i class="fa-solid fa-wine-glass">
+                  <span class="price text-dark">£
+                    {% if total %}
+                      {{ total|floatformat:2 }}
+                    {% else %}
+                      0.00
+                    {% endif %}
+                  </span>
+                </i>
+              </a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'products' %}">
@@ -95,21 +105,28 @@
         </div>
       </nav>
       <main id="content mb-10">
-        {% if messages %}
-          {% for message in messages %}
+      {% if messages %}
+        {% for message in messages %}
           <div class="alert alert-success text-center">{{message}}</div>
-          {% endfor %}
-        {% endif %}
+        {% endfor %}
+      {% endif %}
+      <div class="mx-auto container-fluid text-center my-5">
       {% block content_header %}
       {% endblock %}
+      </div>
+      <div class="mx-auto container-fluid justify-content-center m-5 text-center">
       {% block content %}
       {% endblock %}
+      </div>
       </main>
       <!--Floating message for newsletter?-->
-      <footer class="footer navbar-fixed-bottom bg-dark text-light p-2">
-        <div class="container">
-          <span class="">newsletter sign up</span>
-        </div>
+      <footer class=" pt-5 text-muted text-center text-small mb-3">
+        <p class="mb-1">&copy; 2022 Winos Den</p>
+        <ul class="list-inline p-3">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
       </footer>
       <!--Javascript to load at the end of body. -->
       {% block postload_js %}
