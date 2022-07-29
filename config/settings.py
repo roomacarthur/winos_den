@@ -184,7 +184,7 @@ MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
 # Email handling setup.
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'winosden@gmail.com'
-EMAIL_USE_TLD = True
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASS = env('EMAIL_HOST_PASS')
 EMAIL_HOST = 'smtp.gmail.com'
