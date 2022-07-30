@@ -39,6 +39,10 @@ body{
 .btn-info{
     background-color:  var(--viridian-green)!important;
 }
+.btn-gold{
+    background-color: var(--old-gold)!important;
+    color: var(--raisin-black)!important;
+}
 
 .btn-outline-warning{
     border-color: var(--old-gold)!important;
