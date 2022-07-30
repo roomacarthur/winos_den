@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import ContactUs, NewsLetter
 # Register your models here.
 class ContactAdmin(admin.ModelAdmin):
+
     list_display = (
         'submitted_on',
         'name',
@@ -19,7 +20,7 @@ class ContactAdmin(admin.ModelAdmin):
         'email',
     )
 
-    ordering = ('submitted_on',)
+    ordering = ('-submitted_on',)
 
 class NewsLetterAdmin(admin.ModelAdmin):
     list_display = (
