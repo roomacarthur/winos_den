@@ -61,7 +61,7 @@
               <a class="nav-link text-light" href="{% url 'under-10' %}">Under £10 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="#">Contact Us</a>
+              <a class="nav-link text-light" href="{% url 'contact_us' %}">Contact Us</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -121,6 +121,12 @@
       </main>
       <!--Floating message for newsletter?-->
       <footer class=" pt-5 text-muted text-center text-small mb-3">
+        <h4><strong>News Letter Sign Up:</strong></h4>
+        <form class="form-inline justify-content-center w-100" method="post">
+          <div class="form-group mr-2"><input class="form-control" type="email" name="email" placeholder="Your Email"></div>
+          <div class="form-group"><button class="btn btn-info" type="button">Subscribe </button></div>
+        </form>
+        <hr class="w-50 mb-1">
         <p class="mb-1">&copy; 2022 Winos Den</p>
         <ul class="list-inline p-3">
           <li class="list-inline-item"><a href="#">Privacy</a></li>
