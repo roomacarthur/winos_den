@@ -226,6 +226,7 @@ if 'USE_AWS' in env:
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+#Stripe WH
 STRIPE_WH_SECRET = env('STRIPE_WH_SECRET')
 
 # Default primary key field type
