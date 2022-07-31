@@ -5,90 +5,83 @@
 {{ product.name }}
 {% endblock %}
 {% block content_header %}
-<h1>{{ product.name }}</h1>
+<h1 class="py-2 text-center">{{ product.name }}</h1>
 {% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col col-md-12 image-container">
-            <div class="my-5 col-xl-4">
-                {% if product.image %}
-                    <a href="{{ product.image.url }}" target="_blank">
-                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </a>
-                    {% else %}
-                    <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                    </a>
-                {% endif %}
-            </div>
+        <div class="col-12 col-lg-6 mb-2">
+            {% if product.image %}
+            <img class="w-100 rounded-2" src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <img class="w-100 rounded-2" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+        {% endif %}
         </div>
-        <div class="col col-md-12 col-xl-6">
-        <ul class="list-group mb-3 my-5">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <p class="my-0">{{ product.description}}</p>
-                </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Price (per/item)</span>
-                <strong>£{{ product.price }}</strong>
-            </li>
-            <div class="card p-1 justify-content-center my-2">
-            <form class="form w-50 mx-auto" action="{% url 'add_to_cart' product.pk %}" method="POST">
-                {% csrf_token %}
-                <div class="form-row">
+        <div class="col-12 col-lg-6 mb-5 card">
+            <h2 class="py-2">{{ product.name }}</h2>
+            <hr class="mt-1">
+
+                <div class="row">
                     <div class="col-12">
-                        <p class="mt-3"><strong>Quantity:</strong></p>
-                        <div class="form-group w-50 mx-auto">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button class="decrement-qty btn rounded-0" 
-                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                        <span class="icon text-danger">
-                                            <i class="fa-solid fa-arrow-left"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input class="form-control qty_input" type="number"
-                                    name="quantity" value="1" min="1" max="99"
-                                    data-item_id="{{ product.id }}"
-                                    id="id_qty_{{ product.id }}">
-                                <div class="input-group-append">
-                                    <button class="increment-qty btn rounded-0"
-                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                        <span class="icon text-green">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </button>
+                        <p class="my-0">{{ product.description }}</p>
+
+                    </div>
+                    <div class="col-12 text-right">
+                        <h3 class="my-0 font-weight-bold">£{{ product.price}}</h3>
+                    </div>
+                </div>
+                <form class="form mx-auto" action="{% url 'add_to_cart' product.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-12">
+                            <p class="mt-3 text-center"><strong>Quantity:</strong></p>
+                            <div class="form-group mx-auto">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="decrement-qty btn rounded-0" 
+                                            data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                            <span class="icon text-danger">
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <input class="form-control qty_input" type="number"
+                                        name="quantity" value="1" min="1" max="99"
+                                        data-item_id="{{ product.id }}"
+                                        id="id_qty_{{ product.id }}">
+                                    <div class="input-group-append">
+                                        <button class="increment-qty btn rounded-0"
+                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                            <span class="icon text-green">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 mb-4 text-center">
+                            <a href="{% url 'products' %}" class="btn btn-info rounded-2 mt-5">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span>Keep Shopping</span>
+                            </a>
+                            <input type="submit" class="btn btn-info rounded-2  mt-5" value="Add to cart">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
-                    <div class="col-12 mb-2">
-                        <a href="{% url 'products' %}" class="btn btn-info rounded-2 mt-5">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Keep Shopping</span>
-                        </a>
-                        <input type="submit" class="btn btn-info rounded-2  mt-5" value="Add to cart">
-                    </div>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            <hr class="my-0">
+            {% if request.user.is_superuser %}
+            <div class="p-2 justicy-content-center align-content-end">
+                <div class="text-left">
+                    <a class="text-green float-left" href="{% url 'edit_product' product.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="text-danger float-right" href="{% url 'delete_product' product.pk %}">Delete <i class="fa-solid fa-trash-can"></i></a>
                 </div>
-            </form>
-        </div>
-        </ul>
-        {% if request.user.is_superuser %}
-        <div class="card p-2 justicy-content-center">
-            <div class="text-left">
-                <a class="text-green float-left" href="{% url 'edit_product' product.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                <a class="text-danger float-right" href="{% url 'delete_product' product.pk %}">Delete <i class="fa-solid fa-trash-can"></i></a>
             </div>
+            {% endif %}
         </div>
-        {% endif %}
-        </div>
-      </div>
     </div>
 </div>
 {% endblock %}
