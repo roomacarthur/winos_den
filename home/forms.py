@@ -1,5 +1,4 @@
 from .models import ContactUs, NewsLetter
-from django import forms
 from django.forms import ModelForm
 
 class ContactForm(ModelForm):
@@ -11,5 +10,6 @@ class ContactForm(ModelForm):
 class NewsLetterForm(ModelForm):
     class Meta:
         model = NewsLetter
-        fields = '__all__'
-
+        fields = (
+            'email',
+            )
