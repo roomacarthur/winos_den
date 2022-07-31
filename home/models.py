@@ -16,4 +16,7 @@ class NewsLetter(models.Model):
     signed_up_on = models.DateTimeField(auto_now_add=True)
         
     class Meta:
-        verbose_name_plural  =  "News Letter"
+        verbose_name_plural  =  "Subscribers"
+    
+    def __str__(self):
+        return self.email
