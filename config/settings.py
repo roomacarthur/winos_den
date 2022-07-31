@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'profiles',
     'products',
     'cart',
+    'checkout',
     #other
     'storages',
     'crispy_forms',
@@ -61,7 +62,7 @@ INSTALLED_APPS = [
 ]
 
 #crispy forms template pack.
-CRISPY_TEMPLATE_PACK = 'bootstrap'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 AUTHENTICATION_BACKENDS = [
@@ -112,13 +113,16 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                # MEDIA_URL requirement. 
-                'django.template.context_processors.media', 
+                'django.template.context_processors.media', # MEDIA_URL requirement.  
                 'django.template.context_processors.request', # allauth requirement.
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.contexts.cart_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
