@@ -19,7 +19,6 @@ class ContactUs(CreateView):
     model = ContactUs
     form_class = ContactForm
     template_name = 'home/contact_us.html'
-
     def get_success_url(self):
         """
         Upon successful submission return user to 

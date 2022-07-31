@@ -6,6 +6,7 @@ class ContactForm(ModelForm):
     class Meta:
         model = ContactUs
         fields = '__all__'
+        
 
 class NewsLetterForm(ModelForm):
     class Meta:
