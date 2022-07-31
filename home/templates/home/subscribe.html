@@ -1,0 +1,23 @@
+{% extends "../base.html" %}
+{% block head_title %}
+Subscribe
+{% endblock %}
+{% block content_header %}
+<h1 class="py-2 text-center">Subscribe!</h1>
+<p class="text-center py-2">Sign up below to recieve all our latest offers and monhtly newsletter!</p>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form id="contact-form" class="form col-lg-12 text-center" method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-info"type="submit">Subscribe!</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
