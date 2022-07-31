@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+<!--head info for this page.-->
+{% block head_title %}
+Checkout
+{% endblock %}
+{% block content_header %}
+<h1 class="py-2 text-center">Thank You!</h1>
+<p class="text-muted text-center">ORDER: {{ order.id }} COMPLETED! Email confirmation has been sent to: {{ order.email }}</p>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form class="form-inline justify-content-center w-100" method="post">
+                <div class="form-group mr-2"><input class="form-control" type="email" name="email" placeholder="Your Email"></div>
+                <div class="form-group"><button class="btn btn-info" type="button">Subscribe </button></div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
