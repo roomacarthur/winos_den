@@ -4,22 +4,92 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
-<!--head info for this page.-->
+<!--.-->
 {% block head_title %}
-Checkout
+Order Complete!
 {% endblock %}
 {% block content_header %}
-<h1 class="py-2 text-center">Thank You!</h1>
-<p class="text-muted text-center">ORDER: {{ order.id }} COMPLETED! Email confirmation has been sent to: {{ order.email }}</p>
+<h1 class="py-2 text-center">Order Complete!</h1>
 {% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form class="form-inline justify-content-center w-100" method="post">
-                <div class="form-group mr-2"><input class="form-control" type="email" name="email" placeholder="Your Email"></div>
-                <div class="form-group"><button class="btn btn-info" type="button">Subscribe </button></div>
-            </form>
+            <div class="row">
+                <div class="col-12 text-center bold mb-4">
+                    Order Information
+                </div>
+            </div>
+            <!-- Display order number/ID -->
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <p>Order Number</p>
+                </div>
+                <div class="col-12 col-lg-8 float-right">
+                    <p class="font-weight-bold">{{ order.order_number}}</p>
+                </div>
+            </div>
+            <!-- Display order date.-->
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <p>Order Date</p>
+                </div>
+                <div class="col-12 col-lg-8 float-right">
+                    <p class="font-weight-bold">{{ order.date}}</p>
+                </div>
+            </div>
+            <!--Display Delivery info.-->
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <p>Delivering to:</p>
+                </div>
+                <div class="col-12 col-lg-8 float-right">
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.full_name }}
+                        </div>
+                    </div>
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.house_name }}
+                        </div>
+                    </div>
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.street_address_1 }}
+                        </div>
+                    </div>
+                    {% if order.street_address_2 %}
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.street_address_2 }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.city }}
+                        </div>
+                    </div>
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.post_code }}
+                        </div>
+                    </div>
+                    <div class="row font-weight-bold">
+                        <div class="col-12 float-right">
+                        {{ order.country }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="w-100">
+            <!-- Return user back to products. -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a class="btn btn-info bold" href="{% url 'products' %}">Continue Shopping</a>
+                </div>
+            </div>
         </div>
 
     </div>
