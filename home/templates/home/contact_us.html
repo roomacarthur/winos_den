@@ -13,7 +13,7 @@ Contact Us
         <div class="col-12">
             <form id="contact-form" class="form col-lg-12 text-center" method="post">
                 {% csrf_token %}
-                {{ form.media}}
+                {{ form.media }}
                 {{ form.as_p }}
                 <button class="btn btn-info"type="submit">Submit New</button>
             </form>
