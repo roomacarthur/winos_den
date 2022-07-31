@@ -18,8 +18,6 @@ class AllProducts(generic.ListView):
     """
     model = Product
     template_name = 'products/product_list.html'
-    paginate_by = 9
-    
     # search parameters 
     def get_queryset(self):
     # if 'q' in self.request.GET:
@@ -48,7 +46,6 @@ class ProductDetails(generic.DetailView):
     
     """
     model = Product
-    # pk_url_kwarg = 'id'
     template_name = 'products/product_details.html'
 
 

@@ -8,7 +8,7 @@ Add Product
 {% block content %}
 <div class="form-group">
     {% if user.is_authenticated %}
-        <form id="product-form" class="form" method="post">
+        <form id="product-form" class="form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media}}
             {{ form.as_p }}
