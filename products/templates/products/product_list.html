@@ -1,8 +1,12 @@
 {% extends "../base.html" %}
-{% block content %}
 {% block head_title %}
-<h1 class="py-2 text-center">Our Wines</h1>
+Our Wines
 {% endblock %}
+
+{% block content_header %}
+<h1 class="py-2 text-center">{{ product.name }}</h1>
+{% endblock %}
+{% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="product-container col-12">
