@@ -4,7 +4,6 @@ var clientSecret = $('#id_client_secret').text().slice(1,-1);
 
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
-
 var style = {
     base: {
         color: '#5f8785',
@@ -65,7 +64,7 @@ form.addEventListener('submit', function(ev){
             card.update({'disabled': false});
             $('#submit-button').attr('disabled', false);
         } else {
-            if (result,intent.status === 'succeeded'){
+            if (result.paymentIntent.status === 'succeeded'){
                 form.submit();
             }
         }
