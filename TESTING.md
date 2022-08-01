@@ -32,16 +32,16 @@
 
 4. **TEST:** View Products.
     - **RESULT** = Easily view the products that are listed on the site. 
-    **PASS**
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/products_list.png)
 
 5. **TEST:** View Product details.
     - **RESULT** = when clicking on a product from the main products page, I can clearly see the product and all it's details, I have the option to select QTY and add to cart. this Functionality works flawlessly.
-    **PASS**
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/product_details.png)
 
 5. **TEST:** View cart
     - **RESULT** = When I have no items in my cart it shows an empty cart but as I add items they are populated into the cart, this includes qty, sub total and a cart total. I am given the option to checkout or continue shopping.
-    **PASS**
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/cart.png)
 
-5. **TEST:** View Product details.
-    - **RESULT** = when clicking on a product from the main products page, I can clearly see the product and all it's details, I have the option to select QTY and add to cart. this Functionality works flawlessly.
+5. **TEST:** Add details at checkout and complete purchase. 
+    - **RESULT** = Payments are handled bys stripe and are very secure, Payment details are taken at the checkout page, the ability to pay twice due to miss clicks is removed and stripe webhooks listen for actions incase the internal functions miss anything. If user is logged in, they are able to save personal info for late user, this works flawlessly, upon saving info it is visible within the user profile seciton.
     **PASS**
