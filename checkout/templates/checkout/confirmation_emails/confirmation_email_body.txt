@@ -1,0 +1,18 @@
+Howdy {{ order.full_name }},
+
+Thank you for placing your order with us! Hopefully you will find this email confirmation and all the information within it helpfull! 
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Order Total: {{ order.order_total }}
+
+Your order will be dispatched within 24hours of purchase({{ order.date }}) and delivered to: {{ order.house_name}}, {{ order.street_address_1}}, {{order.street_address_2}}, {{order.city}}, {{order.post_code}},{{order.country}}. 
+
+
+If you need to need to reach out or have any questions please either email us at winosden@gmail.com or fill out a contact us form on our site! 
+
+
+All the best!
+
+Winos Den.

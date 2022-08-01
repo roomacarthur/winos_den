@@ -1,0 +1,1 @@
+YAY Winos Den says tahnks for placing your order: {{ order.order_number}}
