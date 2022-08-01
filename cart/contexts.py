@@ -1,4 +1,3 @@
-
 from django.shortcuts import get_object_or_404
 from products.models import Product
 
@@ -6,7 +5,7 @@ from products.models import Product
 def cart_contents(request):
 
     cart_items = []
-    total  = 0
+    total = 0
     item_count = 0
     cart = request.session.get('cart', {})
 
