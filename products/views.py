@@ -1,14 +1,12 @@
 from django.shortcuts import render
-from django.views import generic, View
+from django.views import generic
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
-from .models import Product, Category
+from .models import Product
 from .forms import ProductForm
 from django.contrib import messages
-# from django.db.models import Q
 
 
 class AllProducts(generic.ListView):
@@ -24,7 +22,9 @@ class AllProducts(generic.ListView):
         query = self.request.GET.get('q')
         if query:
             # if value searched matches name or description return items.
-            object_list = self.model.objects.filter(name__icontains=query)|self.model.objects.filter(description__icontains=query)
+            object_list = self.model.objects.filter(
+                name__icontains=query)|self.model.objects.filter(
+                description__icontains=query)
         else:
             object_list = self.model.objects.all()
         return object_list
@@ -32,7 +32,8 @@ class AllProducts(generic.ListView):
 
 class ProductDetails(generic.DetailView):
     """
-    
+    Render item from Product model on
+    product_details.html template.
     """
     model = Product
     template_name = 'products/product_details.html'
@@ -56,7 +57,9 @@ class AddNewProduct(CreateView, UserPassesTestMixin, LoginRequiredMixin):
 
 
 class EditProduct(UpdateView, UserPassesTestMixin, LoginRequiredMixin):
-
+    """
+    View to render form to allow editing of items within DB
+    """
     def test_func(self):
         return self.request.user.is_superuser
 
@@ -70,13 +73,17 @@ class EditProduct(UpdateView, UserPassesTestMixin, LoginRequiredMixin):
         Prompt user with success message that includes product name.
         """
         name = self.object.name
-        messages.success(self.request, f'{name}, was updated successfully.')
+        messages.success(self.request,
+            f'{name}, was updated successfully.')
         pk = self.kwargs['pk']
         return reverse('product_detail',kwargs={'pk':pk})
 
 
 class DeleteProduct(DeleteView, UserPassesTestMixin, LoginRequiredMixin):
-
+    """
+    View to delete product from DB.
+    
+    """
     def test_func(self):
         return self.request.user.is_superuser
 
@@ -84,10 +91,11 @@ class DeleteProduct(DeleteView, UserPassesTestMixin, LoginRequiredMixin):
     template_name = 'products/product_delete.html'
     success_message = 'Product successfully deleted.'
     
+    #get object id.
     def get_object(self):
         pk = self.kwargs.get('pk')
         return get_object_or_404(Product, pk=pk)
-
+    #get success url.
     def get_success_url(self):
         return reverse('products')
     
@@ -96,4 +104,5 @@ class DeleteProduct(DeleteView, UserPassesTestMixin, LoginRequiredMixin):
         Success message to be displayed after deletion of post.
         """
         messages.success(self.request, self.success_message)
-        return super(DeleteProduct, self).delete(request, *args, **kwargs)
+        return super(DeleteProduct, self).delete(
+            request, *args, **kwargs)
