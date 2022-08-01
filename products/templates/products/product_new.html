@@ -3,18 +3,22 @@
 Add Product
 {% endblock %}
 {% block content_header %}
-<h1>Create New Product</h1>
+<h1 class="py-2 text-center">Add New Product</h1>
 {% endblock %}
 {% block content %}
-<div class="form-group">
-    {% if user.is_authenticated %}
-        <form id="product-form" class="form" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media}}
-            {{ form.as_p }}
-            <button class="btn btn-info"type="submit">Submit New</button>
-        </form>
-    {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="form-group col-12 col-lg-6 mx-auto">
+            {% if user.is_authenticated %}
+                <form id="product-form" class="form text-center" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media}}
+                    {{ form|crispy }}
+                    <button class="btn btn-info"type="submit">Submit New</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
