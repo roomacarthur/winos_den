@@ -1,3 +1,7 @@
-
 User-agent: *
-
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /profile/
+sitemap: https://winos-den.herokuapp.com/sitemap.xml
