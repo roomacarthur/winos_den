@@ -62,7 +62,7 @@ Checkout
             <p class="text-muted">
                 To complete your order, please fill out the below form:
             </p>
-            <form action="{% url 'checkout' %}" method="POST" class="payment-form">
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
                 <fieldset class=" col rounded px-2 mb-3">
                     <legend class="fieldset-label small text-dark w-auto px-1">Details</legend>
