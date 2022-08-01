@@ -71,7 +71,7 @@ Provided that the site is a success and the sales figures keep the business owne
 + User account creation and management 
 + Payment gateway - Stripe
 + Fully responsive
-+ Product creation, editing and deleting. 
++ Product creation, reading, editing and deleting. 
 + Users can store billing information
 + Anonymous review submission for newsletter
 
@@ -82,7 +82,14 @@ Provided that the site is a success and the sales figures keep the business owne
 + Loyalty scheme for returning customer. 
 + Sorting products within list view.
 + Page pagination.
++ featured products.
 
+### Additional considerations.
+
++ More scope on user profiles, allow for loyalty schemes and more customisation
++ REview/rating ability; provide the ability for registered users to review products and leave a rating (Consider restricting to items that user has purchased.).
++ automate emails for new featured products.
++ coupons based on users spend over time. 
 
 ## Structure
 
@@ -117,11 +124,9 @@ There will be a link in the footer to navigate users to a newsletter sign up.
 
 ### Wireframes
 
-As an unwritten rule with all of my design work I opt for a mobile first approach, All of our initial planning with the management at winos den was based on designing the site in mobile first as we both believe that the majority of the consumer base will be mobile/tablet users. From this it is quite simple to extend the site to look great in desktop view also.
+As an unwritten rule with all of my design work I opt for a mobile first approach, All of our initial planning with the management at winos den was based on designing the site in mobile first as we both believe that the majority of the consumer base will be mobile/tablet users. From this it is quite simple to extend the site to look great in desktop view also. With the bases of this site being to provide an MVP first. All block content elements will be centered on page. utilizing 100% page width on smaller screens and 50% width on larger screens, this allows for a very streamline approach to styling the majority of the site, with only small edits being made to the block content on each page.
 
-
-# *Add Wireframes Here*
-
+[WireFrames](https://github.com/roomacarthur/winos_den/blob/main/documentation/wireframes.pdf)
 
 
 ### Database
@@ -131,6 +136,12 @@ Database structure and planning can be found here: [LINK](https://github.com/roo
 ## Surface
 
 ### Typography
+
+To keep the site in running with winos den's house style the font we will be using is Lora, with Serif as a backup, 
+
+Lora will be imported into the CSS from Google fonts. We will also include the 500, 600 and 700 weights to cover a nice selection of needs. 
+
+[Lora - GoogleFonts](https://fonts.google.com/specimen/Lora?subset=vietnamese&category=Serif,Sans+Serif&preview.text=the%20quick%20brown%20fox%20jumps%20over%20the%20lazy%20dog.&preview.text_type=custom&query=lor)
 
 ### Colours
 
@@ -157,11 +168,7 @@ Social media has always been a very strong avenue for businesses to grow and wit
 ### Facebook
 
 Here is an example of the facebook page we will be using.
-
-### Instagram
-
-Here is an example of an instagram account that once set up we will strive to be like. 
-
+[Click to go to example Facebook page](https://github.com/roomacarthur/winos_den/blob/main/documentation/winos_fb.pdf)
 
 ### Newsletter
 
@@ -186,6 +193,60 @@ Some key points that will be focused on are as follows:
 - up to date sitemap.xml
 
 Search engine crawlers rank pages on many factors and keeping everything we do as professional and complete as possible will keep the site in good shape. Maintaining the site and fixing any broken links that may appear over time will also provide us with a better ranking. Page ranking doesn't happen over night and this will take some time but with the correct growth, traffic and management the site will slowly appear closer to that top spot. 
+
+# Technologies
+
+- Vs Code
+- Git
+- Bash
+- GitHub
+- HTML5
+- CSS3
+- Python
+- JavaScript
+- jQuery
+- Heroku
+- Stripe
+
+When working on python projects I work within a virtual env and track all my packages in a requirements.txt file. 
+
+Below is a list of all the python packages used for PCR and there version types.:
+- asgiref==3.5.2
+- boto3==1.24.38
+- botocore==1.27.38
+- certifi==2022.6.15
+- cffi==1.15.1
+- charset-normalizer==2.1.0
+- cryptography==37.0.4
+- defusedxml==0.7.1
+- dj-database-url==0.5.0
+- Django==3.2.14 <<<<<<<< - Specific version to avoid security issues. 
+- django-allauth==0.51.0
+- django-countries==7.2.1
+- django-crispy-forms==1.14.0
+- django-environ==0.9.0
+- django-heroku==0.3.1
+- django-storages==1.12.3
+- gunicorn==20.1.0
+- idna==3.3
+- jmespath==1.0.1
+- oauthlib==3.2.0
+- Pillow==9.2.0
+- psycopg2==2.9.3
+- pycparser==2.21
+- PyJWT==2.4.0
+- python-dateutil==2.8.2
+- python3-openid==3.2.0
+- pytz==2022.1
+- requests==2.28.1
+- requests-oauthlib==1.3.1
+- s3transfer==0.6.0
+- six==1.16.0
+- sqlparse==0.4.2
+- stripe==3.5.0
+- typing-extensions==4.3.0
+- whitenoise==6.2.0
+- urllib3==1.26.10
 
 # Deployment
 
