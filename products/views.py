@@ -30,17 +30,6 @@ class AllProducts(generic.ListView):
         return object_list
         
 
-
-
-class UnderTen(generic.ListView):
-    """
-    Displays all items relating to the model: Product.
-    Renders on the template product_list.html
-    """
-    model = Product
-    template_name = 'products/under_10.html'
-
-
 class ProductDetails(generic.DetailView):
     """
     
