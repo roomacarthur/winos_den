@@ -1,4 +1,3 @@
-
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1,-1);
 var clientSecret = $('#id_client_secret').text().slice(1,-1);
 var stripe = Stripe(stripePublicKey);
@@ -20,14 +19,14 @@ var style = {
 };
 
 var card = elements.create('card', {style: style});
-card.mount('#card-element')
+card.mount('#card-element');
 
 //card element real time validation error handling.
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
     //if there is an error message return html content('input')
     if (event.error) {
-        let input = `
+        var input = `
         <span class="text-danger">
             <i class="fa-solid fa-circle-exclamation"></i>
             ${event.error.message}
@@ -91,7 +90,7 @@ form.addEventListener('submit', function(ev){
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
-                let input = `
+                var input = `
                 <span class="text-danger">
                     <i class="fa-solid fa-circle-exclamation"></i>
                     ${result.error.message}
@@ -108,6 +107,6 @@ form.addEventListener('submit', function(ev){
         });
     }).fail(function () {
         location.reload();
-    })
+    });
 });
 

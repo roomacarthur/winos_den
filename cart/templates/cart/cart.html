@@ -38,7 +38,7 @@ Cart ({{item_count}})
                     </div>
                     <div class="col-7">
                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                        <p class="my-0 small text-muted">
+                        <div class="my-0 small text-muted">
                             <form class="form update-form" method="POST" action="{% url 'adjust_cart' item.item_id %}">
                                 {% csrf_token %}
                                 <div class="form-group">
@@ -70,7 +70,7 @@ Cart ({{item_count}})
                             </form>
                             <a class="update-link text-info" role="button"><small>Update</small></a>
                             <a class="remove-item text-danger float-right remove_{{ item.item_id }}" role="button"><small>Remove</small></a>
-                        </p>
+                        </div>
                     </div>
                     <div class="col-3 text-right">
                         <p class="my-0">£{{ item.product.price | calc_total:item.quantity }}</p>
@@ -106,20 +106,20 @@ Cart ({{item_count}})
         $('.update-link').click(function(e) {
             var form = $(this).prev('.update-form');
             form.submit();
-        })
+        });
 
         // Remove item and reload on click
         $('.remove-item').click(function(e) {
-            let csrfToken = "{{ csrf_token }}";
-            let itemId = $(this).attr('class').split('remove_')[1];
-            let url = `remove/${itemId}/`;
-            let data = {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('class').split('remove_')[1];
+            var url = `remove/${itemId}/`;
+            var data = {
                 'csrfmiddlewaretoken': csrfToken
             };
     
             $.post(url, data).done(function () {
                     location.reload();
                 });
-        })
+        });
     </script>
 {% endblock %}

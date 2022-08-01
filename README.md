@@ -126,7 +126,7 @@ As an unwritten rule with all of my design work I opt for a mobile first approac
 
 ### Database
 
-Database structure and planning can be found here: [LINK]()
+Database structure and planning can be found here: [LINK](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/mvt.png)
 
 ## Surface
 
@@ -370,3 +370,14 @@ STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 Within my local files my Environmental Variables are set within a .env file, the details of this file are confidential and are added to the _.gitignore_ file so that they aren't publicly available. But because these files are not pushed to GitHub we need to enable the same Variables within Heroku for the application to run successfully. These can be set under the Config vars, found within the apps settings, and providing the same Key=Value pairs that you provide to the .env e.g. (SECRET_KEY = 12345)
 
 # Credits
+
+Code Credits. 
+```
+Chris(AKA ckz8780) @ This project was heavily inspired by the Boutique Ado Project and a large section of this applications functionality is taken from there. 
+```
+```
+The CI community and staff for providing an amazing knowledge base.
+```
+```
+
+```
