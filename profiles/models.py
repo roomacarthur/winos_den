@@ -14,8 +14,7 @@ class CustomerProfile(models.Model):
 
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30, blank=False, null=True)
-    last_name = models.CharField(max_length=50, blank=False, null=True)
+    user_phone_number = models.CharField(max_length=30, blank=False, null=True)
     user_house_name = models.CharField(max_length=50, blank=False, null=True)
     user_street_address_1 = models.CharField(max_length=80, blank=False, null=True)
     user_street_address_2 = models.CharField(max_length=80, blank=True, null=True)
