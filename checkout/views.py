@@ -86,8 +86,9 @@ def checkout(request):
                 'checkout_success', args=[order.order_number])
                 )
         else:
-            messages.error(request, 
-            'OOPS! Looks like you made a mistake, Please check your information.')
+            messages.error(request,
+                    'OOPS! Looks like you made a mistake, Please check your \
+                    information.')
     else:
         cart = request.session.get('cart')
         if not cart:
@@ -134,7 +135,7 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
-    order  = get_object_or_404(Order, order_number=order_number)
+    order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = CustomerProfile.objects.get(user=request.user)
         order.customer_profile = profile
@@ -151,7 +152,9 @@ def checkout_success(request, order_number):
                 'user_post_code': order.post_code,
                 'user_Country': order.country,
             }
-            customer_profile_form = CustomerProfileForm(profile_data, instance=profile)
+            customer_profile_form = CustomerProfileForm(
+                profile_data, instance=profile
+                )
             if customer_profile_form.is_valid():
                 customer_profile_form.save()
     messages.success(request, f'Order { order_number } successfully processed! \

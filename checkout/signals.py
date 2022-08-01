@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from .models import OrderLineItem
 
 
-# Receiver decorator for post save signals from the OrderLineItem model. 
+# Receiver decorator for post save signals from the OrderLineItem model.
 @receiver(post_save, sender=OrderLineItem)
 def update_on_save(sender, instance, created, **kwargs):
     """
@@ -12,7 +12,8 @@ def update_on_save(sender, instance, created, **kwargs):
     """
     instance.order.total_update()
 
-# Receiver decorator for post save signals from the OrderLineItem model. 
+
+# Receiver decorator for post save signals from the OrderLineItem model.
 @receiver(post_delete, sender=OrderLineItem)
 def update_on_delete(sender, instance, **kwargs):
     """

@@ -1,6 +1,6 @@
-
 from django import forms
 from .models import Order
+
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -16,8 +16,9 @@ class OrderForm(forms.ModelForm):
             'post_code',
             'country',
         )
+
     def __init__(self, *args, **kwargs):
-        
+
         super().__init__(*args, **kwargs)
         placeholders = {
             'full_name': 'Full Name',

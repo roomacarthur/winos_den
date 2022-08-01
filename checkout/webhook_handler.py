@@ -1,5 +1,5 @@
 """
-Stripe config, 
+Stripe config,
 Webhook Handling
 """
 from django.conf import settings
@@ -15,18 +15,25 @@ from django.http import HttpResponse
 import json
 import time
 
+
 class StripeWH_Handler:
     """
     Stripe WebHook Handling.
     """
     def __init__(self, request):
-        self.request  = request
+        self.request = request
 
     def _send_confirmation_email(self, order):
         customer_email = order.email
-        subject = render_to_string('checkout/confirmation_emails/confirmation_email_subject.txt', {'order':order})
-        body = render_to_string('checkout/confirmation_emails/confirmation_email_body.txt', {'order':order})
-        
+        subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            {'order': order}
+            )
+        body = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_body.txt',
+            {'order': order}
+            )
+
         send_mail(
             subject,
             body,
@@ -58,7 +65,7 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
-        
+
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
@@ -98,7 +105,8 @@ class StripeWH_Handler:
         if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
-                content=f'Webhook Received: {event["type"]} | SUCCESS, Verified order already in database',
+                content=f'Webhook Received: {event["type"]} | SUCCESS,\
+                Verified order already in database',
                 status=200
             )
         else:
@@ -138,7 +146,7 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook Received: {event["type"]}',
             status=200)
-    
+
     def handle_payment_intent_payment_failed(self, event):
         """
         Webhook event handler for payment_intent.payment_failed

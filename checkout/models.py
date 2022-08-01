@@ -6,6 +6,7 @@ from profiles.models import CustomerProfile
 from products.models import Product
 import uuid
 
+
 # Create your models here.
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
@@ -21,14 +22,16 @@ class Order(models.Model):
     street_address_2 = models.CharField(max_length=80, blank=True, null=True)
     city = models.CharField(max_length=80, blank=False)
     post_code = models.CharField(max_length=15, blank=False, null=True)
-    country = CountryField(blank_label='Country',blank=False, null=True)
+    country = CountryField(blank_label='Country', blank=False, null=True)
     date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2,
         null=False, default=0
         )
     original_cart = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default=''
+        )
 
     def _order_no_generator(self):
         """
@@ -48,15 +51,16 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        If order number hasn't already been set, 
+        If order number hasn't already been set,
         Override the original save and generate new order number.
         """
         if not self.order_number:
-            self.order_number  = self._order_no_generator()
+            self.order_number = self._order_no_generator()
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.order_number
+
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(
@@ -68,13 +72,13 @@ class OrderLineItem(models.Model):
         )
     quantity = models.IntegerField(null=False, blank=False, default=0)
     line_item_total = models.DecimalField(
-        max_digits=6, decimal_places=2, null=False, 
+        max_digits=6, decimal_places=2, null=False,
         blank=False, editable=False
         )
 
     def save(self, *args, **kwargs):
         """
-        If order number hasn't already been set, 
+        If order number hasn't already been set,
         Override the original save and generate new order number.
         """
         self.line_item_total = self.quantity * self.product.price
