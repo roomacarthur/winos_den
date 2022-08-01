@@ -32,7 +32,12 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', 'winos-den.herokuapp.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '0.0.0.0',
+    'winos-den.herokuapp.com'
+    ]
 
 
 # Application definition
@@ -56,13 +61,13 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'reviews',
-    #other
+    # other
     'storages',
     'crispy_forms',
     'django_countries',
 ]
 
-#crispy forms template pack.
+# crispy forms template pack.
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
@@ -89,7 +94,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-SITE_ID=1
+SITE_ID = 1
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -114,8 +120,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.media', # MEDIA_URL requirement.  
-                'django.template.context_processors.request', # allauth requirement.
+                # MEDIA_URL requirement.
+                'django.template.context_processors.media',
+                # allauth requirement.
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.contexts.cart_contents',
@@ -183,14 +191,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 
 MEDIA_URL = '/media/'
-MEDIAFILES_DIRS =[os.path.join(BASE_DIR, 'media')]
-MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
+MEDIAFILES_DIRS = [os.path.join(BASE_DIR, 'media')]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Email handling setup, 
+# Email handling setup.
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -223,11 +233,11 @@ if 'USE_AWS' in env:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
-#STRIPE config.
+# STRIPE config.
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
-#Stripe WH
+# Stripe WH
 STRIPE_WH_SECRET = env('STRIPE_WH_SECRET')
 
 # Default primary key field type
