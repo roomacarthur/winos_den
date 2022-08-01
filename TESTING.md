@@ -1,21 +1,53 @@
-## HTML Validators
+# HTML Validators
 
-| Template | Pass? | Image|
-| ------------- | -- | ------------- |
-| base.html | Register an account | So That I can save my details and make purchases. |
-| index.html | Register an account | So That I can save my details and make purchases. |
-| contact_us.html | Register an account | So That I can save my details and make purchases. |
+Django Html Syntax throws errors in the [W3C Validator](https://validator.w3.org/)
 
-## CSS Validators
+Ignoring the errors shwon from the django tags the results are as follows:
 
-| Template | Pass? | Image|
-| ------------- | -- | ------------- |
-| style.css | Register an account | So That I can save my details and make purchases. |
-| index.html | Register an account | So That I can save my details and make purchases. |
-| contact_us.html | Register an account | So That I can save my details and make purchases. |
+index.html -- **PASS**
+
+contact_us.html -- **PASS**
+
+subscribe.html -- **PASS**
+
+product_delete.html -- **PASS**
+
+product_details.html -- **PASS**
+
+product_edit.html -- **PASS**
+
+product_list.html -- **PASS**
+
+product_new.html -- **PASS**
+
+profile.html -- **PASS**
+
+review.html -- **PASS**
+
+base.html -- 2x errors - (additional closing div and p elements.) removed and  -- **PASS**
+
+cart.html -- **PASS**
+
+checkout.html -- **PASS**
+
+checkout_success.html -- **PASS**
 
 
-## User Stories Tests. 
+
+# CSS Validators
+
+Checkout/css -- **PASS**
+
+Profiles/css -- **PASS**
+
+Static/css -- **PASS**
+
+# JS Validator. 
+
+ALL JS code passed JSHint, with the stipe_elements showing 2 errors that Template literals aren't supported in versions prior to ES6 but this isn't an issue for us and can be ignored. 
+
+
+# User Stories Tests. 
 
 1. **TEST:** Signing up functionality. 
     - **RESULT** = Successfully created a new account, received email authentication, and was able to log in after email activation. Prompted with success message when logged in.  
@@ -97,7 +129,7 @@
     [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/edit_success.png)
 
     [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/delete_conf.png)
-    
+
     [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/delete_success.png)
 
 

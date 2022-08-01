@@ -1,6 +1,7 @@
 from django.contrib import admin
-
 from .models import ContactUs, NewsLetter
+
+
 # Register your models here.
 class ContactAdmin(admin.ModelAdmin):
 
@@ -21,6 +22,7 @@ class ContactAdmin(admin.ModelAdmin):
     )
 
     ordering = ('-submitted_on',)
+
 
 class NewsLetterAdmin(admin.ModelAdmin):
     list_display = (

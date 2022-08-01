@@ -5,6 +5,7 @@ from .models import ContactUs, NewsLetter
 from django.urls import reverse
 from django.contrib import messages
 
+
 class IndexView(TemplateView):
     """
     A view to return the index page, rendered on the index.html template.
@@ -14,25 +15,28 @@ class IndexView(TemplateView):
 
 class ContactUs(CreateView):
     """
-    CBV to render contact us form on contact_us.html template, 
+    CBV to render contact us form on contact_us.html template,
     upon successful submission prompt user with success message.
     """
     model = ContactUs
     form_class = ContactForm
     template_name = 'home/contact_us.html'
+
     def get_success_url(self):
         """
         Upon successful submission return to contact remplate
         Prompt user with success message.
         """
-        messages.success(self.request, 'Thank you for contacting us! We aim to reply within 24 hours.')
+        messages.success(
+            self.request,
+            'Thank you for contacting us! We aim to reply within 24 hours.')
         return reverse('contact_us')
 
 
 class NewsLetter(CreateView):
     """
     CBV to render newsletter signup form.
-    Upon successful signup, prompt user with success message. 
+    Upon successful signup, prompt user with success message.
     """
 
     model = NewsLetter
