@@ -71,32 +71,31 @@ Provided that the site is a success and the sales figures keep the business owne
 + User account creation and management 
 + Payment gateway - Stripe
 + Fully responsive
-+ Crud functionality for users to leave reviews on products. 
-+ Admin product management
-+ User posted content moderation for admin.
++ Product creation, editing and deleting. 
++ Users can store billing information
++ Anonymous review submission for newsletter
 
 ### Future Releases/Updates:
 
 + Stock management for Admin.
 + More in depth user profile customisation e.g. profile picture, rating scores, 
 + Loyalty scheme for returning customer. 
++ Sorting products within list view.
++ Page pagination.
+
 
 ## Structure
 
-As the platform will be user driven, the structure is based on allowing users to be drawn to products and offers. Users will be prompted with messages when a hard action has been made e.g. "successfully logged in", "Review Posted Successfully", "You have logged out".
+As the platform will be user driven, the structure is based on allowing users to be drawn to products and offers. Users will be prompted with messages when a hard action has been made e.g. "successfully logged in", "Order processed successfully", "You have logged out".
 
-There Will be a news letter sign up promotion which will be located in different places from time to time but it will always have a constant place in the footer. 
+There will be a link in the footer to navigate users to a newsletter sign up. 
 
 + Header
 
     + Winos Den Logo
     + Desktop and mobile navigation
     + User Access
-    + 
-
-+ Banner
-
-    + Promotional offers
+    + Search Bar.
 
 + Messages
 
@@ -109,9 +108,8 @@ There Will be a news letter sign up promotion which will be located in different
 
 + Footer
 
-    + Winos Den Location
-    + Business Links (T&C, Privacy Policy etc.)
-    + Links to socials
+    + Winos Den Copyright.
+    + Links to Developer.
     + News Letter Sign up.
 
 
@@ -127,6 +125,8 @@ As an unwritten rule with all of my design work I opt for a mobile first approac
 
 
 ### Database
+
+Database structure and planning can be found here: [LINK]()
 
 ## Surface
 
@@ -223,8 +223,150 @@ To activate this:
 
 The project is now deployed and will automatically re-run the build and deploy every time I push code to GitHub.
 
+## Amazon AWS S3 Deployment
+
+AWS S3 will be used to host our static and media files for this project. 
+
+1. navigate to [AWS](https://aws.amazon.com/) and create a free account.
+2. Log in and type "S3" into the search bar and navigate there.
+3. Click Create bucket, name it and select the region that makes the most sense to you. 
+4. Under "Object ownership" ensure to select "ACLs enabled. 
+5. Ensure that "Block all public access" is NOT checked as we need to allow access to our files.
+6. now navigate to to the "properties" section within your newly created bucket. 
+7. Under "Static website hosting" click edit and make sure to change static hosting to "enabled". 
+8. Within the "permissions" tab select the CORS section and select edit, within here you need to paste the following snippet:
+```
+[
+    {
+        "AllowedHeaders": [
+        "Authorization"
+        ],
+        "AllowedMethods": [
+        "GET"
+        ],
+        "AllowedOrigins": [
+        "*"
+        ],
+        "ExposeHeaders": []
+    }
+]
+```
+9. navigate to the bucket policy section. select edit > policy generator. Select s3 bucket policy and and enter "*" within all principles. select "get object" from the actions menu. In the previous tab you can copy the ARN number as you will need to paste this exact snippet into the ARN field. 
+10. Now click add statement and generate policy, You can now copy the generated policy and paste it into the bucket policy editor and add "/*" to the end of the resource key.
+11. navigate to ACL and click edit. Enabled lists next to "everyone" you will be prompted with a warning, enable and and click save. 
+
+
+IAM allows for acces to S3 and managing our storage via django.
+
+1. navigate to IAM(you may need to search for this at the top)
+2. select "user groups" in the side bar.
+3. give your group a name I named mine "manage-winos-den" and click create group.
+4. Now select polices and create policy.
+5. Select JSON and click "import managed policy" here you need to search for "AmazonS3FullAccess" and click import.
+6. navigate to your S3 bucket and copy the ARN number again. 
+7. now update the resource section of your policy to look something like:
+```
+"Resource": [
+    "ARN_HERE",
+    "ARN_HERE/*",
+]
+```
+8. click next x2 and name the policy and provide a small description. Policy created.
+9. Select "User Groups" and select the group you have just created. under the permissions tab, select add permission > attach policy and select the policy you just made and select add permissions. 
+10. Select users from the side nav and click add user, name the user and ensure to check "programmatic access" and click next. 
+11. select the group with the policy attached and then next > next > create user. 
+12. Download the provided CSV this contains the credentials for your user, store this somewhere safe! 
+
+Now we need to connect AWS with our Django project.
+
+1. install packages and freeze to requirements.txt
+```
+pip install boto3 django-storages
+
+pip freeze > requirements.txt
+```
+2. Add "storages" to your INSTALLED_APPS.
+3. ADD AWS variables to settings.py. and access your environmental variables with your chosen method. 
+```
+if 'USE_AWS' in env:
+    # Cache control.
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # Amazon S3 Bucket config.
+    AWS_STORAGE_BUCKET_NAME = 'your bucket name'
+    AWS_S3_REGION_NAME = 'eu-west-2'
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # static and media files.
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # override static and meia urls in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+3. within heroku add a key value to the config vars of "USE_AWS = True"
+4. AWS_ACCESS_KEY api is located in the CSV you downloaded earlier from IAM.
+5. Remove DISABLE_COLLECTSTATIC. 
+6. create a file named "custom_storages.py" in the root of tour directory.
+```
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+
+
+class StaticStorage(S3Boto3Storage):
+    location = settings.STATICFILES_LOCATION
+
+class MediaStorage(S3Boto3Storage):
+    location = settings.MEDIAFILES_LOCATION
+```
+7. Navigate to yourr S3 bucket and click create folder, name it media. 
+8. upload the contents of your media folder. so that your local and AWS media folders have the same contents. 
+9. Be sure to grant public access under the permissions option. 
+10. Your static and media files and now hosted via AWS. 
+
+## Stripe
+
+Stripe is a very well know online payment handler, It provides a very customizable and secure method for processing payments. 
+
+Following stripes own walkthrough guide ([FOUND HERE](https://stripe.com/docs/payments/accept-a-payment#web-collect-card-details)) provides a very streamline method for installing stripe within your application, they provide guides and tidbits for a variety of coding languages.
+
+Once stripe is enabled we need to set up webhooks to listen and catch requests/payments. 
+
+1. Navigate to the "Developers" tab located in the top right of the Stripe window. 
+2. Down the left hand side click on "webhooks" and select "add endpoint"
+3. here you will need to provide a url, this consists of your app url + checkout/wh in our case 
+```
+https://winos-den.herokuapp.com/checkout/wh
+```
+4. now you want to enable all events, so thats the WH is listening out for all events.
+5. within your newly created webhook, click on "Reveal" below "signing secret" this will provide your secret api copy iy. 
+6. We now need to set the Stripe related variables within our settings and heroku config vars.
+```
+STRIPE_WH_SECRET = "This is your webhook signing secret"
+STRIPE_PUBLIC_KEY = "Stripe publishable key, found within api keys"
+STRIPE_SECRET_KEY = "Stripe secret key, found within api keys"
+```
+7. depending on how your eviron is set up you will need to access these variables within your settings.py file. #
+8. In my case using a .env file they look something like this. 
+```
+STRIPE_WH_SECRET = env('STRIPE_WH_SECRET')
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+
+```
+9. this allows me to access the keys without them being open to the public.
+10. Keeping api keys can be very sensitive and can allow the wrong people to access your accounts so they want to stay hidden and should not be shared.
+
 ## Environment Variables
 
-Within my local files my Environmental Variables are set within a env.py file, the details of this file are confidential and are added to the _.gitignore_ file so that they aren't publicly available. But because these files are not pushed to GitHub we need to enable the same Variables within Heroku for the application to run successfully.
+Within my local files my Environmental Variables are set within a .env file, the details of this file are confidential and are added to the _.gitignore_ file so that they aren't publicly available. But because these files are not pushed to GitHub we need to enable the same Variables within Heroku for the application to run successfully. These can be set under the Config vars, found within the apps settings, and providing the same Key=Value pairs that you provide to the .env e.g. (SECRET_KEY = 12345)
 
 # Credits
