@@ -1,11 +1,13 @@
 from django.db import models
 
-# Create your models here.
 class Category(models.Model):
     """
-    Model to 
+    Model to tore different categories within the DB
     """
     class Meta:
+        """
+        Update plural name to ensure it is correct in AP
+        """
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=250)
@@ -19,6 +21,11 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Model to store products in the DB.
+    Helper method to return name.
+    category is a FK linking to the Category model.
+    """
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=250)
     description = models.TextField()
