@@ -1,0 +1,29 @@
+{% extends '../base.html' %}
+{% block head_title %}
+Leave a Review
+{% endblock %}
+{% block content_header %}
+<h1 class="py-2 text-center">It's Anonymous Review Time</h1>
+<p class="text-center py-2">We find the best reviews are the ones from behind the mask!</p>
+<p class="text-center py-2">We compile all reviews submitted in store and online and feature the best ones in our monhtly newsletter! <a href="{% url 'subscribe'%}">SIGNUP NOW</a></p>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6 mx-auto">
+            <form id="contact-form" class="form col-lg-12 text-center" method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form|crispy }}
+                <button class="btn btn-info"type="submit">Submit New</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block postload_js %}
+    <script type="text/javascript">
+        $("#")
+    </script>
+{% endblock %}
