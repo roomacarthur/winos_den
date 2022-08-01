@@ -1,11 +1,10 @@
 """
-Strip config, 
+Stripe config, 
 Webhook Handling
 """
 from django.conf import settings
 from django.http import HttpResponse
-import json
-import time
+
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from profiles.models import CustomerProfile
@@ -13,6 +12,8 @@ from .models import Order, OrderLineItem
 from products.models import Product
 from django.http import HttpResponse
 
+import json
+import time
 
 class StripeWH_Handler:
     """
