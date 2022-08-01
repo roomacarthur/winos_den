@@ -15,10 +15,43 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        {{ profile }}
+        <div class="col-12 col-lg-6 my-2 text-center">
+            <h5 class="text-muted">Default Customer Information</h5>
+            <form class="" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-info">Update</button>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6 my-2 text-center">
+            <h5 class="text-muted">Recent Orders</h5>
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Order No</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>{{order.date}}</td>
+                            <td>
+                                <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">{{order.order_number|truncatechars:10 }}</a>
+                            </td>
+                            <td>£{{order.order_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
 {% block postload_js %}
+{{ block.super }}
     <script src="{% static 'profiles/js/profiles.js' %}"></script>
 {% endblock %}
