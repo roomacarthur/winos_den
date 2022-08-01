@@ -28,6 +28,7 @@ class Order(models.Model):
         null=False, default=0
         )
     original_cart = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _order_no_generator(self):
         """
