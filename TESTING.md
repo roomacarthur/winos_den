@@ -43,5 +43,36 @@
     [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/cart.png)
 
 5. **TEST:** Add details at checkout and complete purchase. 
-    - **RESULT** = Payments are handled bys stripe and are very secure, Payment details are taken at the checkout page, the ability to pay twice due to miss clicks is removed and stripe webhooks listen for actions incase the internal functions miss anything. If user is logged in, they are able to save personal info for late user, this works flawlessly, upon saving info it is visible within the user profile seciton.
-    **PASS**
+    - **RESULT** = Payments are handled bys stripe and are very secure, Payment details are taken at the checkout page, the ability to pay twice due to miss clicks is removed and stripe webhooks listen for actions incase the internal functions miss anything. If user is logged in, they are able to save personal info for late user, this works flawlessly, upon saving info it is visible within the user profile seciton. 
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/checkout.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/checkout_details.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/oder_complete.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/user_profiles_save.png)
+
+6. **TEST** See my order history. 
+    - **RESULT** = Upon clicking on user profile in the account dropdown in the navbar. I can see my saved information and also a list of my previous orders, I am able to click into each order to see the confirmation page. 
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/user_profiles_save.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/old_order.png)
+
+6. **TEST** Search bar functionality. 
+    - **RESULT** = From the surface level the search function works flawlessly. The search query is is checked for in product name and description. To test this further, I added "merlot" to the description of a white wine.
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/white_search.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/merlot_search.png)
+
+6. **TEST** edit product.
+    - **RESULT** = as an admin user I am able to click on a product to navigate to its product detail view, from here I have the option to edit or delete a product. Clicking on edit, opens the product's model in a form. Upon successful edit I am given a success message. If opting to delete product I am prompted with a confirmation screen giving me the option to delete or return to products. upon successful deletion I am given a success message.
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/edit_delete.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/product_edit.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/edit_success.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/delete_conf.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/delete_success.png)
+
+6. **TEST** Add product.
+    - **RESULT** = as an admin user I am able add a product within the Front end UI without accessing the Django based AP. Clicking on "Add New Product" in the account drop down, prompts me with a new template consiting of a Product model form. 
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/edit_delete.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/product_edit.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/edit_success.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/delete_conf.png)
+    [**PASS Image**](https://github.com/roomacarthur/winos_den/blob/main/documentation/images/delete_success.png)
+
+
