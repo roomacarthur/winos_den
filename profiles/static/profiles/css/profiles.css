@@ -1,0 +1,9 @@
+select,
+select option {
+    color: #aab7c4;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #96a8a7!important;
+}
