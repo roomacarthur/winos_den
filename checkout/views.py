@@ -9,6 +9,8 @@ from cart.contexts import cart_contents
 from .models import Order, OrderLineItem
 from .forms import OrderForm
 from products.models import Product
+from profiles.models import CustomerProfile
+from profiles.forms import CustomerProfileForm
 
 import json
 import stripe
@@ -100,7 +102,25 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY
         )
-        order_form = OrderForm()
+        if request.user.is_authenticated:
+            try:
+                profile = CustomerProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.user_phone_number,
+                    'house_name': profile.user_house_name,
+                    'street_address_1': profile.user_street_address_1,
+                    'street_address_2': profile.user_street_address_2,
+                    'city': profile.user_city,
+                    'post_code': profile.user_post_code,
+                    'country': profile.user_country,
+                })
+
+            except CustomerProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
     template = 'checkout/checkout.html'
     context = {
@@ -115,6 +135,25 @@ def checkout(request):
 def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order  = get_object_or_404(Order, order_number=order_number)
+    if request.user.is_authenticated:
+        profile = CustomerProfile.objects.get(user=request.user)
+        order.customer_profile = profile
+        order.save()
+
+        # Save the user's info
+        if save_info:
+            profile_data = {
+                'user_phone_number': order.phone_number,
+                'user_house_name': order.house_name,
+                'user_street_address_1': order.street_address_1,
+                'user_street_address_2': order.street_address_2,
+                'user_city': order.city,
+                'user_post_code': order.post_code,
+                'user_Country': order.country,
+            }
+            customer_profile_form = CustomerProfileForm(profile_data, instance=profile)
+            if customer_profile_form.is_valid():
+                customer_profile_form.save()
     messages.success(request, f'Order { order_number } successfully processed! \
        Email Confirmation has been sent to {order.email}')
     if 'cart' in request.session:
