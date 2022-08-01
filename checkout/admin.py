@@ -30,11 +30,15 @@ class OrderAdmin(admin.ModelAdmin):
         'city',
         'post_code',
         'country',
+        'original_cart',
+        'stripe_pid',
     )
     readonly_fields = (
         'order_number',
         'date',
         'order_total',
+        'original_cart',
+        'stripe_pid',
     )
     inlines = (OrderLineItemAdminInline,)
 
