@@ -19,6 +19,7 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = ('-date',)
     fields = (
         'date',
+        'customer_profile',
         'order_number',
         'order_total',
         'full_name',
