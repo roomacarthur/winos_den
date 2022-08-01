@@ -10,12 +10,12 @@ EDIT: {{product.name}}
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-md-6 col-lg-4 mx-auto">
                 {% if user.is_authenticated %}
                     <form id="product-form" class="new-post-form text-center" method="post" enctype='multipart/form-data'>
                     {% csrf_token %}
                     {{ form.media}}
-                    {{ form.as_p }}
+                    {{ form|crispy }}
                         <button class="btn btn-info"type="submit">Confirm Edit</button>
                     </form>
             {% endif %}

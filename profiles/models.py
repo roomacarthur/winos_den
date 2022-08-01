@@ -35,4 +35,4 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         CustomerProfile.objects.create(user=instance)
     # Existing customers, save profile.
-    instance.userprofile.save()
+    instance.customerprofile.save()
