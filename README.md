@@ -426,13 +426,9 @@ Within my local files my Environmental Variables are set within a .env file, the
 
 # Credits
 
-Code Credits. 
 ```
-Chris(AKA ckz8780) @ This project was heavily inspired by the Boutique Ado Project and a large section of this applications functionality is taken from there. 
+Chris(AKA ckz8780) @ CI, This project was heavily inspired by the Boutique Ado Project and a large section of this applications functionality is taken from there. 
 ```
 ```
 The CI community and staff for providing an amazing knowledge base.
-```
-```
-
 ```
