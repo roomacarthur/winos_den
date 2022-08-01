@@ -23,13 +23,7 @@ The marketing strategy will push the boundaries on your typical audience and wit
 
 ### User Stories
 
-Following a strategy meeting with the management of Winos Den we created a base of user stories to cover most scenarios that may be encountered for all levels of site users. Below is some examples of the user stories we came up with during the meeting. All user stories can be viewed by clicking the link at the bottom of this section. 
-
-| As A/An | I Can | So That|
-| --- | ------ | ------ |
-| Site User | Register an account | So That I can save my details and make purchases. |
-| Site User | Register an account | So That I can save my details and make purchases. |
-| Site User | Register an account | So That I can save my details and make purchases. |
+Following a strategy meeting with the management of Winos Den we created a base of user stories to cover most scenarios that may be encountered for all levels of site users. Below is some examples of the user stories we came up with during the meeting. User stories can be viewed by clicking the link at the bottom of this section. 
 
 
 For the purpose of development process these user stories have also been added to a kanban board. This is to aid in an agile workflow and streamline the development process as much as possible. 
