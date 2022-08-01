@@ -3,17 +3,27 @@
 Welcome
 {% endblock %}
 {% block content_header %}
-<h1>Welcome To The Den</h1>
+<h1 class="text-center py-2">Welcome To The Den</h1>
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
-    <p>Welcome to Winos Den, your go to online store for the best wines on the market.</p>
-</div>
-<!--Signup/Sign in links.-->
-
-<!--Category links.-->
-<div class="row">
-    <div>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12 mx-auto">
+            <p class="py-1">Welcome to Winos Den, your go to online store for the best wines on the market.</p>
+            <a class="btn btn-info mb-3" href="{% url 'products' %}">Shop our Wines!</a>
+        </div>
+    </div>
+    <div class="row p-0">
+        <div class="col-12 col-lg-6 mx-auto pb-2">
+            <img class="img-fluid rounded"src="{{ MEDIA_URL }}tasting.jpg" alt="Tasting glasses">
+        </div>
+    </div>
+    <div class="row p-0">
+        <div class="col-12 mx-aut text-center">
+            <h4>WINE TASTING!</h4>
+            <p class="py-2">Every Friday From 19:30 onwards! </p>
+            <p class="py-2">No need to book, just turn up!</p>
+        </div>
     </div>
 </div>
 {% endblock %}
