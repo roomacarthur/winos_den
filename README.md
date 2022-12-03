@@ -1,4 +1,4 @@
-# ![Winos Den](https://winosden.up.railway.app/)
+# [Winos Den](https://winosden.up.railway.app/)
 
 To easily navigate please click the the small headings selector to the top left of this document. 
 
