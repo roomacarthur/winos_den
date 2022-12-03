@@ -36,8 +36,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
-    'winos-den.herokuapp.com'
-    'web-production-b128.up.railway.app/'
+    'winos-den.herokuapp.com',
+    'web-production-b128.up.railway.app/',
     ]
 
 
