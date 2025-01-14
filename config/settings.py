@@ -134,16 +134,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('PGDATABASE'),
-        'USER': env('PGUSER'),
-        'PASSWORD': env('PGPASSWORD'),
-        'HOST': env('PGHOST'),
-        'PORT': env('PGPORT'),
+if env("DATABASE_URL", default=None):
+    # Use DATABASE_URL from .env or environment variables
+    DATABASES = {
+        'default': dj_database_url.parse(env("DATABASE_URL"))
     }
-}
+elif env.bool("TEST", default=False):
+    # Use SQLite for testing
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # Use individual PostgreSQL environment variables
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env("PGDATABASE"),
+            'USER': env("PGUSER"),
+            'PASSWORD': env("PGPASSWORD"),
+            'HOST': env("PGHOST"),
+            'PORT': env("PGPORT", default="5432"),
+        }
+    }
 
 
 # Password validation
