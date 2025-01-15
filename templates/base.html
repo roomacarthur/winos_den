@@ -61,14 +61,7 @@
       {% endblock %}
       </main>
       <!--Floating message for newsletter?-->
-      <footer class=" pt-5 text-muted text-center text-small mb-3">
-        <hr class="w-50 my-4">
-        <h4><strong>News Letter:</strong></h4>
-        <a class="btn btn-info" href="{% url 'subscribe' %}">Sign Up Now!</a>
-        <hr class="w-50 mb-1">
-        <p class="mb-1">&copy; 2022 Winos Den</p>
-        <a class="small text-green pb-3" rel="noopener" target="_blank" href="https://github.com/roomacarthur" aria-label="Visit Site creators profile (opens in a new tab)">Site by RM</a>
-      </footer>
+      {% include 'partials/footer.html' %}
       <!--Javascript to load at the end of body. -->
       {% block postload_js %}
       {% endblock %}
