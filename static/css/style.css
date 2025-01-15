@@ -1,73 +1,145 @@
-/* google fonts import */
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+/* Inter typeface from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-/*--------------------- colour variables */
+
+/* CSS Variables  */
 :root {
-    --raisin-black: #272727ff;
-    --old-gold: #b3a400ff;
+    --font-primary: 'Inter', sans-serif;
+    --shade: rgb(243, 243, 243);
+    --gold: rgb(145, 131, 54);
     --ivory: #f1f7e6ff;
     --viridian-green: #21a0a0ff;
     --skobeloff: #046865ff;
 }
-
-*{
-    font-family: 'Lora', serif;
+/* Type */
+body {
+    font-family: var(--font-primary);
+    font-weight: 400; /* Normal weight */
+    font-size: 16px;  /* Default font size */
+    line-height: 1.5;
 }
 
-body{
-    background: var(--ivory);
-    height:100vh;
-    padding-bottom: 80px;
+h1, h2, h3 {
+    font-family: var(--font-primary);
+    font-weight: 700; /* Bold weight */
+    line-height: 1.2;
 }
 
-.text-green{
-    color: var(--viridian-green);
-}
-.text-light{
-    color: var(--ivory)!important;
-}
-.text-dark{
-    color: var(--raisin-black)!important;
-}
-
-.bg-dark{
-    background-color: var(--viridian-green)!important;
-}
-.bg-gold{
-    background-color: var(--old-gold);
-}
-.btn-info{
-    background-color:  var(--viridian-green)!important;
-}
-.btn-gold{
-    background-color: var(--old-gold)!important;
-    color: var(--raisin-black)!important;
-}
-
-.btn-outline-warning{
-    border-color: var(--old-gold)!important;
-    font-weight: 400;
-}
-.btn-outline-warning:hover{
-    background-color: var(--ivory)!important;
-    color: var(--raisin-black)!important;
-    font-weight:400;
-}
-.items-qty{
-    padding: 2px;
-    font-size: .75em;
-    color: var(--raisin-black);
-    top:0;
-    position: relative;
+em, i {
+    font-style: italic;
 }
 
 
-.navbar-toggler{
-    border-color: var(--ivory)!important;
+
+/* Navbar Styling */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #000;
+    text-transform: uppercase;
 }
-/* Product List view, item card styling */
-.card {
+.navbar-brand-alt {
+    color: var(--gold);
+}
+/* set width of start and end of nav to center search form */
+.icon-nav, .brand-nav {
+    width: 200px;
+}
+.search-input {
+    width: 300px;
+}
+
+.input-group-text, .form-control{
     border: none;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+    background-color: var(--shade);
+}
+.input-group-text:focus, .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: var(--shade);
+}
+
+.input-group-text {
+    border-radius: 12px 0 0 12px;
+}
+
+.form-control {
+    border-radius: 0 12px 12px 0;
+
+}
+
+.nav-link {
+    color: #000;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+.nav-link:hover {
+    color: var(--gold);
+}
+
+.nav .fs-4 {
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.nav .fs-4:hover {
+    color: var(--gold);
+}
+
+.nav-bottom{
+    border-bottom: 3px solid var(--shade);
     border-radius: 5px;
+}
+
+.navbar .dropdown-menu {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Remove blue outline and customize the focus styling for dropdown links */
+.dropdown-item:focus, .dropdown-toggle:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Add hover and active states for dropdown items */
+.dropdown-item:hover, .dropdown-item:active {
+    background-color: var(--shade);
+    color: var(--gold);
+    border-radius: 5px;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    background-color: var(--shade);
+    border: none; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Cart value badge styling */
+.cart-value {
+    top: 3px;
+    left: 33px;
+    font-size: 0.75rem;
+    font-weight: bold; 
+    letter-spacing: 1px;
+    background-color: var(--gold);
+    color: #fff;
+    border-radius: 12px;
+    padding: 4px;
+    min-width: 20px;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Dynamically stretch to a pill for larger content */
+.cart-value:has-content {
+    border-radius: 12px;
+    padding: 2px 6px;
 }
