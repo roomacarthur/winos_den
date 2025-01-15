@@ -13,7 +13,6 @@
     <meta name="keywords" content="Wine, vino, red wine, white wine, champagne, prosecco, rosé, pinot noir, free delivery">
     {% endblock %}
     <!-- Favicon -->
-      <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}favicon/favicon-16x16.png">
@@ -21,7 +20,9 @@
     <!-- Site wide CSS -->
     {% block core_css %}
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Static CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     {% endblock %}
@@ -33,8 +34,6 @@
     {% block core_js %}
     <script src="https://kit.fontawesome.com/51b9956ef3.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <!--Stripe JS-->
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
@@ -45,64 +44,8 @@
     <title>Winos Den | {% block head_title %}{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}"><h1 class="text-light">Winos Den</h1></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="{% url 'products' %}">Our Wines</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="{% url 'contact_us' %}">Contact Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="{% url 'reviews' %}">Reviews</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-user"></i>
-              </a>
-              <div class="dropdown-menu">
-                {% if user.is_superuser %}
-                <a class="dropdown-item" href="{% url 'add_product' %}">Add New Product</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
-                {% endif %}
-                {% if user.is_authenticated %}
-                <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a>
-                <a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a>
-                {% else %}
-                <a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a>
-                <a class="dropdown-item" href="{% url 'account_login' %}">Log In</a>
-                {% endif %}
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="{% url 'cart' %}">
-                <i class="fa-solid fa-wine-glass">
-                  <span class="price text-dark">£
-                    {% if total %}
-                      {{ total|floatformat:2 }}
-                    {% else %}
-                      0.00
-                    {% endif %}
-                  </span>
-                </i>
-              </a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'products' %}">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
-            <button class="btn btn-bold btn-outline-warning my-2 my-sm-0 text-light" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+    <!-- Navbar -->
+    {% include 'partials/navbar.html' %}
 
       <main id="content mb-10">
       {% if messages %}
@@ -129,5 +72,7 @@
       <!--Javascript to load at the end of body. -->
       {% block postload_js %}
       {% endblock %}
+      <!-- Bootstrap -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

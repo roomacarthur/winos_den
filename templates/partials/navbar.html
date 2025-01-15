@@ -1,0 +1,74 @@
+<header class="py-2">
+    <!-- Top Navbar -->
+    <nav class="container d-flex align-items-center justify-content-between">
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold brand-nav" href="{% url 'home' %}">Sip.<span class="navbar-brand-alt">s</span></a>
+        <!-- Search Bar -->
+        <form class="d-flex search-input" role="search">
+            <div class="input-group">
+                <span class="input-group-text border-end-0">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input
+                    class="form-control border-start-0"
+                    type="search"
+                    placeholder="search"
+                    aria-label="Search"
+                >
+            </div>
+        </form>
+
+        <!-- Icons Cart / Profile-->
+        <ul class="nav icon-nav d-flex justify-content-end">
+            <!-- Cart -->
+            <li class="nav-item position-relative">
+                <a class="nav-link" href="{% url 'cart' %}">
+                    <!-- if logic for qty in cart.-->
+                    <span class="cart-value position-absolute">1</span>
+                    <i class="bi bi-bag fs-4"></i>
+                </a>
+            </li>
+            <!-- Account Dropdown-->
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle me-0 pe-0"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                >
+                    <i class="bi bi-person fs-4"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a class="dropdown-item" href="{% url 'account_login'%}">Log In</a></li>
+                    <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                    {% endif %}
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Bottom Navbar -->
+    <nav class="container d-flex align-items-center justify-content-start mt-2 nav-bottom">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link ps-0" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'products' %}">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
+            </li>
+        </ul>
+    </nav>
+</header>
