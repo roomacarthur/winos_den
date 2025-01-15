@@ -7,7 +7,8 @@
     --font-primary: 'Inter', sans-serif;
     --shade: rgb(243, 243, 243);
     --gold: rgb(145, 131, 54);
-    --ivory: #f1f7e6ff;
+    --bg: rgb(255, 255, 255);
+    --text: #212529;
     --viridian-green: #21a0a0ff;
     --skobeloff: #046865ff;
 }
@@ -17,6 +18,8 @@ body {
     font-weight: 400; /* Normal weight */
     font-size: 16px;  /* Default font size */
     line-height: 1.5;
+    background-color: var(--bg);
+    overflow: overlay;
 }
 
 h1, h2, h3 {
@@ -29,6 +32,21 @@ em, i {
     font-style: italic;
 }
 
+
+/* Hide scrollbar background */
+::-webkit-scrollbar {
+    width: 6px;
+    background: var(--shade) !important;
+
+}
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--shade) !important;
+}
 
 
 /* Navbar Styling */
@@ -90,6 +108,7 @@ em, i {
 .nav-bottom{
     border-bottom: 3px solid var(--shade);
     border-radius: 5px;
+    margin-bottom: 24px;
 }
 
 .navbar .dropdown-menu {
@@ -143,3 +162,23 @@ em, i {
     border-radius: 12px;
     padding: 2px 6px;
 }
+
+/* Footer  */
+.footer-top{
+    border-top: 3px solid var(--shade);
+    border-radius: 5px;
+}
+
+.dev-link, .copy-text{
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text); 
+    text-decoration: none;
+}
+.dev-link:hover {
+    color: var(--gold);
+}
+
+.nav-list > li {
+    list-style-type: none;
+}   

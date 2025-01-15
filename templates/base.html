@@ -43,11 +43,11 @@
 
     <title>Winos Den | {% block head_title %}{% endblock %}</title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     {% include 'partials/navbar.html' %}
 
-      <main id="content mb-10">
+      <main class="container flex-grow-1 mt-4 mb-4">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-success text-center">{{message}}</div>
