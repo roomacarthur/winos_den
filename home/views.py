@@ -13,6 +13,18 @@ class IndexView(TemplateView):
     template_name = 'home/index.html'
 
 
+class ShippingView(TemplateView):
+    template_name = 'home/shipping_policy.html'
+
+
+class FaqView(TemplateView):
+    template_name = 'home/faq.html'
+
+
+class PolicyView(TemplateView):
+    template_name = 'home/policies.html'
+
+
 class ContactUs(CreateView):
     """
     CBV to render contact us form on contact_us.html template,
