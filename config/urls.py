@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import handler404
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('profile/', include('profiles.urls')),
     path('reviews/', include('reviews.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + debug_toolbar_urls()
+
 
 handler404 = 'config.views.handler404'
