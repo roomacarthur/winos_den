@@ -1,91 +1,91 @@
 {% extends "../base.html" %}
 {% load static %}
 
-{% block head_title %}
-{{ product.name }}
-{% endblock %}
-{% block content_header %}
-<h1 class="py-2 text-center">{{ product.name }}</h1>
-{% endblock %}
 {% block content %}
-<div class="container">
+<div class="container py-5">
     <div class="row">
-        <div class="col-12 col-lg-6 mb-2">
-            {% if product.image %}
-            <img class="w-100 rounded-2" src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% else %}
-            <img class="w-100 rounded-2" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-        {% endif %}
-        </div>
-        <div class="col-12 col-lg-6 mb-5 card">
-            <h2 class="py-2">{{ product.name }}</h2>
-            <hr class="mt-1">
+        <!-- Left Section: Product Images -->
+        <div class="col-12 col-lg-6">
+            <div class="d-flex flex-column align-items-center">
+                <!-- Main Image -->
+                {% if product.image %}
+                <img class="w-100 rounded mb-3" src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                <img class="w-100 rounded mb-3" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
+                {% endif %}
 
-                <div class="row">
-                    <div class="col-12">
-                        <p class="small">Category: <strong>{{ product.category.display_name }}</strong></p>
-                        <p class="my-0">{{ product.description }}</p>
-
-                    </div>
-                    <div class="col-12 text-right">
-                        <h3 class="my-0 font-weight-bold">£{{ product.price}}</h3>
-                    </div>
-                </div>
-                <form class="form mx-auto" action="{% url 'add_to_cart' product.pk %}" method="POST">
-                    {% csrf_token %}
-                    <div class="form-row">
-                        <div class="col-12">
-                            <p class="mt-3 text-center"><strong>Quantity:</strong></p>
-                            <div class="form-group mx-auto">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="decrement-qty btn rounded-0" 
-                                            data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                            <span class="icon text-danger">
-                                                <i class="fa-solid fa-arrow-left"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <input class="form-control qty_input" type="number"
-                                        name="quantity" value="1" min="1" max="99"
-                                        data-item_id="{{ product.id }}"
-                                        id="id_qty_{{ product.id }}">
-                                    <div class="input-group-append">
-                                        <button class="increment-qty btn rounded-0"
-                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                            <span class="icon text-green">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-4 text-center">
-                            <a href="{% url 'products' %}" class="btn btn-info rounded-2 mt-5">
-                                <span class="icon">
-                                    <i class="fas fa-chevron-left"></i>
-                                </span>
-                                <span>Keep Shopping</span>
-                            </a>
-                            <input type="submit" class="btn btn-info rounded-2  mt-5" value="Add to cart">
-                        </div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    </div>
-                </form>
-            <hr class="my-0">
-            {% if request.user.is_superuser %}
-            <div class="p-2 justicy-content-center align-content-end">
-                <div class="text-left">
-                    <a class="text-green float-left" href="{% url 'edit_product' product.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    <a class="text-danger float-right" href="{% url 'delete_product' product.pk %}">Delete <i class="fa-solid fa-trash-can"></i></a>
+                <!-- Thumbnails -->
+                <div class="d-flex justify-content-center gap-2">
+                    <img class="rounded" src="#" alt="{{ product.name }}" style="width: 60px; height: 60px;">
+                    <img class="rounded" src="#" alt="{{ product.name }}" style="width: 60px; height: 60px;">
+                    <img class="rounded" src="#" alt="{{ product.name }}" style="width: 60px; height: 60px;">
                 </div>
             </div>
-            {% endif %}
+        </div>
+
+        <!-- Right Section: Product Info -->
+        <div class="col-12 col-lg-6">
+            <h1 class="mb-3">{{ product.name }}</h1>
+            <p class="text-muted">{{ product.short_description }}</p>
+
+            <!-- Price -->
+            <h2 class="text-success mb-3">£{{ product.price }}</h2>
+
+            <!-- Attributes -->
+            <ul class="list-unstyled mb-3">
+                <li><strong>Category:</strong> {{ product.category.display_name }}</li>
+                <li><strong>Region:</strong> {{ product.region.display_name }}</li>
+                {% if product.size %}
+                <li><strong>Size:</strong> {{ product.size }}ml</li>
+                {% endif %}
+                {% if product.abv %}
+                <li><strong>ABV:</strong> {{ product.abv }}%</li>
+                {% endif %}
+                <li><strong>Stock:</strong> {{ product.stock }}</li>
+            </ul>
+
+            <!-- Quantity and Add to Cart -->
+            <form class="mb-3" action="{% url 'add_to_cart' product.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control w-25">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
+            </form>
+
+            <!-- Additional Actions -->
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'products' %}" class="btn btn-outline-secondary">Back to Products</a>
+                {% if request.user.is_superuser %}
+                <div>
+                    <a class="btn btn-warning me-2" href="{% url 'edit_product' product.pk %}">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'delete_product' product.pk %}">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Reviews</h3>
+            <div class="border-top pt-3">
+                <div class="mb-3">
+                    <strong>Helen M.</strong> <span class="text-muted">(Yesterday)</span>
+                    <p>Excellent running shoes. It turns very sharply on the foot.</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Ann D.</strong> <span class="text-muted">(2 days ago)</span>
+                    <p>Good shoes.</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Andrew G.</strong> <span class="text-muted">(2 days ago)</span>
+                    <p>Is it suitable for running?</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-{% endblock %}
-{% block postload_js %}
-    <script src="{% static 'js/quantity_input.js' %}"></script>
 {% endblock %}
